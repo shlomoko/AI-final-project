@@ -1,0 +1,114 @@
+Gnonograms-java - version 0.9.7
+*********************************
+Jan 19, 2013  French translation (thanks to Gwenael Allard)
+              Bugfix: lock aspect ratio in image importer
+              Bugfix: advanced solver inefficiency
+              Inhibit check grid when a cell is marked
+              Remove marked cell when switching out of solving mode
+Gnonograms-java - version 0.9.6
+*********************************
+Dec 15, 2012  Implemented advanced settings.
+Dec 20, 2012  Improved fix of clue layout truncation bug under Windows.
+Gnonograms-java - version 0.9.5.1
+*********************************
+Dec 12, 2012  Bug-fix - clues truncated under Windows.
+Dec 13, 2012  Switched hide/reveal icons - toggle button icon now reflects game state rather than button action.
+Dec 15, 2012  Inhibit saving invalid solutions
+
+Gnonograms-java - version 0.9.5
+*******************************
+Oct 20, 2012  Internationalistion infrastructure added
+Nov 03, 2012  Partial translation into Japanese and German
+Nov 12, 2012  Completed draft translation into Japanese, German and Spanish (some machine translation)
+Dec 10, 2012  Finalised translations (thanks to Hiroko, Fido and Chrysn)
+
+Gnonograms-java - version 0.9.0
+*******************************
+Sep 30, 2012  Version 0.9.0
+              ImageImporter implemented
+              Lock aspect ratio feature in Image importer
+              Draft New icons in image importer
+Oct 19, 2012  Splash screen specified in manifest
+              Improvements to image importer
+
+Gnonograms-java - version 0.8.0
+*******************************
+Sep 09, 2012  Version 0.8.0
+              Mark cell and return to marked cell implemented
+              Splash screen (rudimentary) implemented (Start up can be slow if set to generate difficult/large puzzle on startup)
+              Potential bug in drawing routines fixed causing failure on some non-Linux systems
+
+Gnonograms-java - version 0.7.0
+*******************************
+Sep 02, 2012  Version 0.7.0
+              Advanced solver implemented
+              Get hint implemented (Ctrl-H)
+              Advanced puzzles generated with higher grade settings
+              Fixed bug - fails if no config file.
+
+Gnonograms-java - version 0.6
+*****************************
+July 14, 2012 Replaced some (most) text with icons.
+              Code tidying
+              View tweaking
+July 15, 2012 Persistent Puzzle Directory property.
+              Bug fix: Info bar inappropriately cleared when game loaded
+              Revert to single toolbar
+              Starts off in solve mode with random puzzle
+July 28, 2012 Persistent starting mode - random puzzle, design puzzle or load puzzle.
+Aug  27, 2012 Improved solver algorithms
+              Highlight labels as well as current cell
+              Improved keyboard controls
+              Time taken shown in info bar instead of dialogue
+
+
+Gnonograms-java - version 0.5
+*****************************
+June 24, 2012 Add persistent properties
+July 1, 2012  Add Timer
+              Bug fix - freedom tooltip not recalculated when game loaded from file
+              Hide and reveal buttons merged
+              Go back to last correct position feature
+              Preferences dialog
+              Remember font size
+              Restart solved game
+July 8, 2012  Context aware toolbars
+
+
+Gnonograms-java - version 0.4
+*****************************
+June 17, 2012 Tweak font and clue label sizing algorithms
+              Count errors when solving manually (but not indicate location)
+              Load working position
+              Insert copyright notices
+June 18, 2012 Implement undo/redo
+              Various bug fixes
+              Simple About box
+              Jar uploaded
+
+
+Gnonograms-java - version 0.3
+*******************************
+June 10, 2012 Added information panel.
+              Added game editor (unvalidated clue input)
+June 16,2012  Added tooltips to toolbar
+              Visible cursor on grid (highlight cell)
+              Keyboard control of cell cursor
+              Keyboard entry of cell status
+              Jar file uploaded
+
+Gnonograms-java - version 0.2
+*******************************
+June 09, 2012 Added save game function
+
+Gnonograms-java - version 0.1.1
+*******************************
+June 08, 2012 Fix bug in puzzle generator - array out of bounds for asymmetric puzzles.
+
+Gnonograms-java - version 0.1.0
+*******************************
+June 2012 - Basic program converted from gtk version.
+            Can generate random pattern puzzles using simple solver
+            Can load ready-made puzzles from .gno files
+            Basic user interface to manually solve puzzles
+            Missing features:  save puzzles, import from images, advanced and ultimate solver, save preferences, undo, redo, mark cell, show errors, etc etc.

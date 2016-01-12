@@ -1,0 +1,31 @@
+
+  Gnonograms-java Installation (from gnonograms-java.jar)
+  -------------------------------------------------------
+  Requires OpenJDK Java >=6 Runtime or equivalent .
+
+  In the instructions below replace "x.x.x" by the version number of the program.
+
+  Mark the file Gnonograms-x.x.x.jar as executable if the OS requires it.
+
+  The program can then be run by right-clicking the .jar file and choosing "Open with OpenJDK Java 6 Runtime" or the equivalent command or by double-clicking.  This may not work on some systems if the file associations are not properly set. 
+
+  Alternatively open a terminal/Command window in the directory containing the .jar file and enter 
+  
+  Linux: "java -jar ./Gnonograms-x.x.x.jar".
+  Windows "javaw -jar ./Gnonograms-x.x.x.jar".
+  
+  NOTE: This program has mainly been tested on Linux. It is confirmed to run on Windows 7 but has not been tested on other versions of Windows or on Apple computers.  However, as it uses only standard Java it should run on any machine with a suitable Java Runtime Engine.
+
+INSTALLATION FROM SOURCE ARCHIVE
+--------------------------------
+
+Extract the compressed source 
+Open terminal in the root directory (containing the Makefile)
+Enter "make jar"
+Proceed as above for installation from .jar
+
+Alternatively, to launch the program directly from the compiled code:
+
+Enter make
+Enter java -cp ./build gnonograms.Main
+

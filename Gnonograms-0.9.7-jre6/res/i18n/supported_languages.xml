@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="en_us">American English</entry>
+<entry key="en_gb">British English</entry>
+<entry key="de">German</entry>
+<entry key="es">Spanish</entry>
+<entry key="ja">Japanese</entry>
+<entry key="fr">French</entry>
+</properties>
