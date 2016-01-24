@@ -1,15 +1,15 @@
 package solver.csp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Zohar on 24/01/2016.
  */
-public class OrderConstraint implements Constraint {
-    Variable firstVar;
-    Variable secondVar;
+public class OrderConstraint extends Constraint {
 
     public OrderConstraint(Variable firstVar, Variable secondVar) {
-        this.firstVar = firstVar;
-        this.secondVar = secondVar;
+        super(firstVar, secondVar);
     }
 
     @Override

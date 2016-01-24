@@ -47,8 +47,18 @@ public class Variable {
         this.start = startValue;
     }
 
-    public Set<Integer> getPossibleValues(){
+    public Set<Integer> getLegalValues(){
+        // If assigned - the only legal value is the assigned one
+        if (start != null){
+            Set<Integer> values = new TreeSet<Integer>();
+            values.add(start);
+            return values;
+        }
         return legalValues;
+    }
+
+    public List<Constraint> getConstraints(){
+        return constraints;
     }
 
     public void removeLegalValue(Integer value){
@@ -61,6 +71,10 @@ public class Variable {
 
     public int getLength(){
         return length;
+    }
+
+    public int getIndex(){
+        return index;
     }
 
 }

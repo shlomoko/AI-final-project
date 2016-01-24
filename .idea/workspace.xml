@@ -6,117 +6,15 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a76de1fc-40af-4dd8-bf3c-cf58ddf6565c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/Gnonograms-0.9.7-jre6.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/About24.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/BlackBorder.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/Edit24.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/Import24.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/Invertion.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/Invertion36.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/New24.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/NoInvertion.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/NoInvertion36.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/Open24.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/Preferences24.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/Redo24.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/Refresh24.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/Save24.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/Undo24.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/WhiteBorder.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/ZoomIn24.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/ZoomOut24.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/alpha_threshold.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/alpha_threshold36.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/alpha_threshold48.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/black_background36.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/blue_threshold.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/blue_threshold36.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/computer.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/dialog-cancel48.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/dialog-ok-apply48.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/dice.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/errorcheck.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/eyes-closed.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/eyes-open.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/face-plain.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/face-smile-big.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/face-uncertain.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/gnonograms3-256.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/green_threshold.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/green_threshold36.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/international48.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/locked.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/locked24.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/locked36.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/locked48.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/overall_threshold.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/question48.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/red_threshold.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/red_threshold36.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/resize-columns36.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/resize-columns48.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/resize-font48.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/resize-rows36.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/resize-rows48.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/start48.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/unlocked.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/unlocked24.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/unlocked36.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/unlocked48.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/images/white_background36.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/Gnonograms_0_9_7_jre6_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AI-final-project.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/AUTHORS" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/COPYING" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/Gnonograms-0.9.7-jre6.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/INSTALL" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/MAINTAINERS" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/Makefile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/NEWS" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/README" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/THANKS" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/Main.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/app/Controller.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/app/Resource.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/app/Viewer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/app/gui/CellGrid.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/app/gui/GameEditor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/app/gui/GnonogramLabel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/app/gui/ImageImporter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/app/gui/LabelBox.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/utils/Cell.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/utils/Config.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/utils/GameLoader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/utils/GameSaver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/utils/Model.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/utils/Move.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/utils/MoveList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/utils/My2DCellArray.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/utils/Region.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/utils/Solver.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/utils/Utils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/i18n/GnonogramsText.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/i18n/GnonogramsText_de.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/i18n/GnonogramsText_en_gb.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/i18n/GnonogramsText_en_us.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/i18n/GnonogramsText_es.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/i18n/GnonogramsText_fr.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/i18n/GnonogramsText_ja.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Gnonograms-0.9.7-jre6/res/i18n/supported_languages.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/games/spade.gno" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nonogramSolver/nonogramSolver.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nonogramSolver/src/MainTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nonogramSolver/src/SolverController.java" />
+    <list default="true" id="a76de1fc-40af-4dd8-bf3c-cf58ddf6565c" name="Default" comment="Implemented arc-consistency in solver. Added getters in variable and">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AI-final-project.iml" afterPath="$PROJECT_DIR$/AI-final-project.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nonogramSolver/src/solver/csp/CSPSolver.java" afterPath="$PROJECT_DIR$/nonogramSolver/src/solver/csp/CSPSolver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nonogramSolver/src/solver/csp/Constraint.java" afterPath="$PROJECT_DIR$/nonogramSolver/src/solver/csp/Constraint.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nonogramSolver/src/solver/csp/IntersectConstraint.java" afterPath="$PROJECT_DIR$/nonogramSolver/src/solver/csp/IntersectConstraint.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nonogramSolver/src/solver/csp/LastBlockConstraint.java" afterPath="$PROJECT_DIR$/nonogramSolver/src/solver/csp/LastBlockConstraint.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nonogramSolver/src/solver/csp/OrderConstraint.java" afterPath="$PROJECT_DIR$/nonogramSolver/src/solver/csp/OrderConstraint.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nonogramSolver/src/solver/csp/Variable.java" afterPath="$PROJECT_DIR$/nonogramSolver/src/solver/csp/Variable.java" />
     </list>
     <ignored path="AI-final-project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -139,20 +37,117 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file leaf-file-name="MainTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/nonogramSolver/src/MainTest.java">
+        <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/gui/MainTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SolverController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/nonogramSolver/src/SolverController.java">
+      <file leaf-file-name="OrderConstraint.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/csp/OrderConstraint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2573696">
-              <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#233#234#0" expanded="true" />
+                <element signature="e#275#276#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IntersectConstraint.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/csp/IntersectConstraint.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#302#303#0" expanded="true" />
+                <element signature="e#344#345#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LastBlockConstraint.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/csp/LastBlockConstraint.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding>
+                <element signature="e#189#190#0" expanded="true" />
+                <element signature="e#231#232#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Constraint.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/csp/Constraint.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.47008547">
+              <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#497#507#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Variable.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/csp/Variable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="76" column="21" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#829#830#0" expanded="true" />
+                <element signature="e#872#873#0" expanded="true" />
+                <element signature="e#1138#1139#0" expanded="true" />
+                <element signature="e#1166#1167#0" expanded="true" />
+                <element signature="e#1219#1220#0" expanded="true" />
+                <element signature="e#1258#1259#0" expanded="true" />
+                <element signature="e#1442#1451#0" expanded="true" />
+                <element signature="e#1602#1603#0" expanded="true" />
+                <element signature="e#1636#1637#0" expanded="true" />
+                <element signature="e#1686#1687#0" expanded="true" />
+                <element signature="e#1724#1725#0" expanded="true" />
+                <element signature="e#1771#1772#0" expanded="true" />
+                <element signature="e#1812#1813#0" expanded="true" />
+                <element signature="e#1841#1842#0" expanded="true" />
+                <element signature="e#1870#1871#0" expanded="true" />
+                <element signature="e#1898#1899#0" expanded="true" />
+                <element signature="e#1926#1927#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CSPSolver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/csp/CSPSolver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1740#1749#0" expanded="true" />
+                <element signature="e#2706#2731#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VariableHeuristic.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/csp/heuristics/VariableHeuristic.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="54" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -160,77 +155,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/app/Controller.java">
+      <file leaf-file-name="ConstraintHeuristic.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/csp/heuristics/ConstraintHeuristic.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="359" column="10" selection-start-line="359" selection-start-column="6" selection-end-line="359" selection-end-column="10" />
-              <folding>
-                <element signature="e#0#19219#0" expanded="false" />
-                <element signature="e#5870#5871#0" expanded="false" />
-                <element signature="e#5934#5935#0" expanded="false" />
-                <element signature="e#16733#16734#0" expanded="false" />
-                <element signature="e#16779#16780#0" expanded="false" />
-                <element signature="e#16819#16820#0" expanded="false" />
-                <element signature="e#16855#16856#0" expanded="false" />
-              </folding>
+              <caret line="3" column="18" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Viewer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/app/Viewer.java">
+      <file leaf-file-name="SolverController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/gui/SolverController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="117" column="15" selection-start-line="117" selection-start-column="4" selection-end-line="117" selection-end-column="15" />
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
-                <element signature="e#0#18355#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#4143#4144#0" expanded="false" />
-                <element signature="e#4173#4174#0" expanded="false" />
-                <element signature="e#10894#10895#0" expanded="false" />
-                <element signature="e#10921#10922#0" expanded="false" />
-                <element signature="e#10968#10969#0" expanded="false" />
-                <element signature="e#11002#11003#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameLoader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/utils/GameLoader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="240" column="0" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#8460#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="5" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#1595#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RunUI.java" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Downloads/FreeNono/FreeNono-0.10-20150905/org/freenono/RunUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="39" column="11" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="11" />
-              <folding>
-                <element signature="n#!!doc" expanded="false" />
-                <element signature="imports" expanded="false" />
+                <element signature="e#1064#1065#0" expanded="false" />
+                <element signature="e#1104#1105#0" expanded="false" />
+                <element signature="e#1281#1282#0" expanded="false" />
+                <element signature="e#1322#1323#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -247,6 +191,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <push-targets>
+      <push-target-info repo="$PROJECT_DIR$" source="master" target-remote="origin" target-branch="master" />
+    </push-targets>
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -266,6 +213,15 @@
         <option value="$PROJECT_DIR$/nonogramSolver/src/CustomController.java" />
         <option value="$PROJECT_DIR$/nonogramSolver/src/MainTest.java" />
         <option value="$PROJECT_DIR$/nonogramSolver/src/SolverController.java" />
+        <option value="$PROJECT_DIR$/nonogramSolver/src/solver/gui/MainTest.java" />
+        <option value="$PROJECT_DIR$/nonogramSolver/src/solver/csp/heuristics/VariableHeuristic.java" />
+        <option value="$PROJECT_DIR$/nonogramSolver/src/solver/csp/heuristics/ConstraintHeuristic.java" />
+        <option value="$PROJECT_DIR$/nonogramSolver/src/solver/csp/Constraint.java" />
+        <option value="$PROJECT_DIR$/nonogramSolver/src/solver/csp/OrderConstraint.java" />
+        <option value="$PROJECT_DIR$/nonogramSolver/src/solver/csp/LastBlockConstraint.java" />
+        <option value="$PROJECT_DIR$/nonogramSolver/src/solver/csp/IntersectConstraint.java" />
+        <option value="$PROJECT_DIR$/nonogramSolver/src/solver/csp/Variable.java" />
+        <option value="$PROJECT_DIR$/nonogramSolver/src/solver/csp/CSPSolver.java" />
       </list>
     </option>
   </component>
@@ -279,8 +235,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-9" />
     <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1048" />
+    <option name="width" value="1618" />
+    <option name="height" value="868" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -307,6 +263,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane">
+        <subPane />
+      </pane>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -326,42 +287,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="AI-final-project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AI-final-project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AI-final-project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="out" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AI-final-project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AI-final-project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="out" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="artifacts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gnonograms_0_9_7_jre6_jar" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -396,18 +321,12 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="AI-final-project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AI-final-project" />
+              <option name="myItemId" value="solver" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Gnonograms-0.9.7-jre6" />
+              <option name="myItemId" value="gui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -421,11 +340,19 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Gnonograms-0.9.7-jre6" />
+              <option name="myItemId" value="nonogramSolver" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gnonograms" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="solver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="csp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -439,25 +366,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Gnonograms-0.9.7-jre6" />
+              <option name="myItemId" value="nonogramSolver" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="gnonograms" />
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="solver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="csp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="heuristics" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane">
-        <subPane />
-      </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -474,23 +404,134 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Develop\AI-final-project\nonogramSolver\src" />
       <recent name="C:\Develop\AI-final-project" />
       <recent name="C:\Develop\AI-final-project\nonoSolver\src" />
       <recent name="C:\Develop\AI-final-project\nonoSolver" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Unnamed">
-    <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/nonogramSolver/src/solver/csp/Variable.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
+  </component>
+  <component name="RunManager" selected="Application.MainTest">
+    <configuration default="false" name="MainTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="gnonograms.*" />
+          <option name="PATTERN" value="solver.gui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="gnonograms.Main" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="MAIN_CLASS_NAME" value="solver.gui.MainTest" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
@@ -744,28 +785,12 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="false" name="Unnamed" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="MainTest" />
-      <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="nonogramSolver" />
-      <envs />
-      <method />
-    </configuration>
-    <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="Application.Unnamed" />
-      <item index="1" class="java.lang.String" itemvalue="Application.Main" />
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Application.MainTest" />
     </list>
     <recent_temporary>
       <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="0" class="java.lang.String" itemvalue="Application.MainTest" />
       </list>
     </recent_temporary>
   </component>
@@ -780,31 +805,62 @@
       <option name="number" value="Default" />
       <updated>1452608135780</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added baseline - the source to work on and basice structure that work">
+      <created>1452626368854</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1452626368854</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Moved packages">
+      <created>1453644324840</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1453644324840</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added get-value for variables">
+      <created>1453649129045</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1453649129045</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Implemented constraints">
+      <created>1453652230594</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1453652230594</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Implemented backtracking in CSPSolver. Fixed constraints ignoring null value, and added functions to variable to deal with the legal value array.">
+      <created>1453654117904</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1453654117904</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="false" />
+    <frame x="-9" y="-9" width="1618" height="868" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32789117" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292517" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1796875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.179375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896176" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30819672" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30819672" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3989071" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -821,6 +877,14 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added baseline - the source to work on and basice structure that work" />
+    <MESSAGE value="Moved packages" />
+    <MESSAGE value="Added get-value for variables" />
+    <MESSAGE value="Implemented constraints" />
+    <MESSAGE value="Implemented backtracking in CSPSolver. Fixed constraints ignoring null value, and added functions to variable to deal with the legal value array." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented backtracking in CSPSolver. Fixed constraints ignoring null value, and added functions to variable to deal with the legal value array." />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
@@ -830,7 +894,39 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/MainTest.java">
+    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/gui/MainTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/gui/SolverController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="e#1064#1065#0" expanded="false" />
+            <element signature="e#1104#1105#0" expanded="false" />
+            <element signature="e#1281#1282#0" expanded="false" />
+            <element signature="e#1322#1323#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/FreeNono/FreeNono-0.10-20150905/org/freenono/RunUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="11" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="11" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/gui/MainTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
@@ -838,12 +934,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/SolverController.java">
+    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/gui/SolverController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1064#1065#0" expanded="false" />
+            <element signature="e#1104#1105#0" expanded="false" />
+            <element signature="e#1281#1282#0" expanded="false" />
+            <element signature="e#1322#1323#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -853,13 +952,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="359" column="10" selection-start-line="359" selection-start-column="6" selection-end-line="359" selection-end-column="10" />
           <folding>
-            <element signature="e#0#19219#0" expanded="false" />
-            <element signature="e#5870#5871#0" expanded="false" />
-            <element signature="e#5934#5935#0" expanded="false" />
-            <element signature="e#16733#16734#0" expanded="false" />
-            <element signature="e#16779#16780#0" expanded="false" />
-            <element signature="e#16819#16820#0" expanded="false" />
-            <element signature="e#16855#16856#0" expanded="false" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -868,16 +961,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="117" column="15" selection-start-line="117" selection-start-column="4" selection-end-line="117" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#18355#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#4143#4144#0" expanded="false" />
-            <element signature="e#4173#4174#0" expanded="false" />
-            <element signature="e#10894#10895#0" expanded="false" />
-            <element signature="e#10921#10922#0" expanded="false" />
-            <element signature="e#10968#10969#0" expanded="false" />
-            <element signature="e#11002#11003#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -885,10 +969,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="240" column="0" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#8460#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -914,7 +994,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/MainTest.java">
+    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/gui/MainTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="15" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
@@ -976,6 +1056,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5319149">
           <caret line="237" column="22" selection-start-line="237" selection-start-column="9" selection-end-line="237" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -997,58 +1078,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/utils/GameLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="240" column="0" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#8460#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/MainTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/app/Viewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="117" column="15" selection-start-line="117" selection-start-column="4" selection-end-line="117" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#18355#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#4143#4144#0" expanded="false" />
-            <element signature="e#4173#4174#0" expanded="false" />
-            <element signature="e#10894#10895#0" expanded="false" />
-            <element signature="e#10921#10922#0" expanded="false" />
-            <element signature="e#10968#10969#0" expanded="false" />
-            <element signature="e#11002#11003#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/app/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="359" column="10" selection-start-line="359" selection-start-column="6" selection-end-line="359" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#19219#0" expanded="false" />
-            <element signature="e#5870#5871#0" expanded="false" />
-            <element signature="e#5934#5935#0" expanded="false" />
-            <element signature="e#16733#16734#0" expanded="false" />
-            <element signature="e#16779#16780#0" expanded="false" />
-            <element signature="e#16819#16820#0" expanded="false" />
-            <element signature="e#16855#16856#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AI-final-project.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1057,12 +1086,151 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/SolverController.java">
+    <entry file="file://$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/app/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2573696">
-          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.036666665">
+          <caret line="359" column="10" selection-start-line="359" selection-start-column="6" selection-end-line="359" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/app/Viewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.036666665">
+          <caret line="117" column="15" selection-start-line="117" selection-start-column="4" selection-end-line="117" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gnonograms-0.9.7-jre6/gnonograms/utils/GameLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.78">
+          <caret line="240" column="0" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/gui/SolverController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="e#1064#1065#0" expanded="false" />
+            <element signature="e#1104#1105#0" expanded="false" />
+            <element signature="e#1281#1282#0" expanded="false" />
+            <element signature="e#1322#1323#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/gui/MainTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/csp/heuristics/VariableHeuristic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="54" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/csp/heuristics/ConstraintHeuristic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="18" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/csp/Variable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="76" column="21" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#829#830#0" expanded="true" />
+            <element signature="e#872#873#0" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#1166#1167#0" expanded="true" />
+            <element signature="e#1219#1220#0" expanded="true" />
+            <element signature="e#1258#1259#0" expanded="true" />
+            <element signature="e#1442#1451#0" expanded="true" />
+            <element signature="e#1602#1603#0" expanded="true" />
+            <element signature="e#1636#1637#0" expanded="true" />
+            <element signature="e#1686#1687#0" expanded="true" />
+            <element signature="e#1724#1725#0" expanded="true" />
+            <element signature="e#1771#1772#0" expanded="true" />
+            <element signature="e#1812#1813#0" expanded="true" />
+            <element signature="e#1841#1842#0" expanded="true" />
+            <element signature="e#1870#1871#0" expanded="true" />
+            <element signature="e#1898#1899#0" expanded="true" />
+            <element signature="e#1926#1927#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/csp/OrderConstraint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#233#234#0" expanded="true" />
+            <element signature="e#275#276#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/csp/IntersectConstraint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#302#303#0" expanded="true" />
+            <element signature="e#344#345#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/csp/CSPSolver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1740#1749#0" expanded="true" />
+            <element signature="e#2706#2731#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/csp/LastBlockConstraint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <element signature="e#189#190#0" expanded="true" />
+            <element signature="e#231#232#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nonogramSolver/src/solver/csp/Constraint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47008547">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#497#507#0" expanded="true" />
           </folding>
         </state>
       </provider>
