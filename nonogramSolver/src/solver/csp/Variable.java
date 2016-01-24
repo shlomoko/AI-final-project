@@ -39,11 +39,28 @@ public class Variable {
      * of the block
      * @return the value of the variable - the start location.
      */
-    public int getStartValue(){
+    public Integer getStartValue(){
         return start;
+    }
+
+    public void setStartValue(Integer startValue) {
+        this.start = startValue;
+    }
+
+    public Set<Integer> getPossibleValues(){
+        return legalValues;
+    }
+
+    public void removeLegalValue(Integer value){
+        legalValues.add(value);
+    }
+
+    public void addLegalValue(Integer value){
+        legalValues.remove(value);
     }
 
     public int getLength(){
         return length;
     }
+
 }

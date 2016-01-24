@@ -14,6 +14,7 @@ public class OrderConstraint implements Constraint {
 
     @Override
     public boolean isViolated() {
-        return !(firstVar.getStartValue() + firstVar.getLength() < secondVar.getStartValue());
+        return !(firstVar.getStartValue() == null || secondVar.getStartValue() == null) &&
+                !(firstVar.getStartValue() + firstVar.getLength() < secondVar.getStartValue());
     }
 }

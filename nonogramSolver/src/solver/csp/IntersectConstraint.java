@@ -1,6 +1,7 @@
 package solver.csp;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Intersection constraint - check if a cell has a specific color
@@ -26,27 +27,22 @@ public class IntersectConstraint implements Constraint {
         this.column = column;
     }
 
-    // Search using binary search to find the first index before the variable.
-    private Variable _binarySearchBlocks(ArrayList<Variable> block, int num){
-        int lower = 0;
-        int upper = block.size() - 1;
-        while (upper > lower){
-            int mid = (upper + lower)/2;
-            if (block.get(mid).getStartValue() < num){
-                lower = mid;
-            } else if (block.get(mid).getStartValue() > num) {
-                upper = mid;
-            } else {
-                return block.get(mid);
+    // Binary search won't work - we have null value
+    private Variable _searchBlocks(ArrayList<Variable> block, int num){
+        for (int i = 0; i < block.size(); i++){
+            if (block.get(i).getStartValue() > num){
+                if (i == 1)
+                    return null;
+                return block.get(i-1);
             }
         }
-        return block.get(lower);
+        return null;
     }
 
     @Override
     public boolean isViolated() {
-        Variable rowCandidate = _binarySearchBlocks(rowBlocks, row);
-        Variable columnCandidate = _binarySearchBlocks(rowBlocks, row);
+        Variable rowCandidate = _searchBlocks(rowBlocks, row);
+        Variable columnCandidate = _searchBlocks(rowBlocks, row);
         boolean isRowMarked = rowCandidate.getStartValue() + rowCandidate.getLength() > row;
         boolean isColumnMarked = columnCandidate.getStartValue() + columnCandidate.getLength() > column;
         return (isRowMarked && isColumnMarked) || (!isRowMarked && !isColumnMarked);
