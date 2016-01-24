@@ -42,4 +42,8 @@ public class Variable {
     public int getStartValue(){
         return start;
     }
+
+    public int getLength(){
+        return length;
+    }
 }
