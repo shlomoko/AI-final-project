@@ -1,14 +1,10 @@
+package solver.gui;
+
 import gnonograms.app.Controller;
-import gnonograms.app.Resource;
 import gnonograms.utils.Model;
-import gnonograms.utils.My2DCellArray;
 
 import java.awt.*;
 
-
-/**
- * Created by tmrlvi on 12/01/2016.
- */
 public class SolverController extends Controller {
     public SolverController(){
         super();

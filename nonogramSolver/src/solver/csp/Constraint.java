@@ -1,4 +1,4 @@
-package csp;
+package solver.csp;
 
 /**
  * Created by Zohar on 24/01/2016.

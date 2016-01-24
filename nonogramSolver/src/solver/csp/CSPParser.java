@@ -1,4 +1,4 @@
-package csp;
+package solver.csp;
 
 import java.util.List;
 

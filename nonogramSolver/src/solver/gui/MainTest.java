@@ -1,3 +1,5 @@
+package solver.gui;
+
 import gnonograms.utils.Model;
 
 public class MainTest {
