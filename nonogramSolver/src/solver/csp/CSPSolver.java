@@ -26,6 +26,7 @@ public class CSPSolver {
     VariableHeuristic variableHeuristic;
     ConstraintHeuristic constraintHeuristic;
 
+    //constructor
     public CSPSolver(List<Variable> variables, VariableHeuristic variableHeur, ConstraintHeuristic constraintHeur){
         this.variableHeuristic = variableHeur;
         this.constraintHeuristic = constraintHeur;
