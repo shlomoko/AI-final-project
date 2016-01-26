@@ -46,11 +46,17 @@ public class CSPSolver {
         //Copy, so we don't ruin;
         remainingVariables = new LinkedList<Variable>(remainingVariables);
         Variable next_var = remainingVariables.remove();
+        Integer originalValue = next_var.getStartValue();
         for (Integer value : next_var.getLegalValues()){
             next_var.setStartValue(value);
-            if (_couldSatisfyConstraint(cons, remainingVariables))
+            if (_couldSatisfyConstraint(cons, remainingVariables)) {
+                // Return to the original value
+                next_var.setStartValue(originalValue);
                 return true;
+            }
         }
+        // Return to the original value
+        next_var.setStartValue(originalValue);
         return false;
     }
 
