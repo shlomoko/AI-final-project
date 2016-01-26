@@ -11,13 +11,11 @@ import java.util.*;
 public class CSPSolver {
     private class Arc{
         public Variable source;
-        public Variable destination;
-        public Constraint edge;
+        public Constraint constaint;
 
-        public Arc(Variable source, Variable dest, Constraint edge){
+        public Arc(Variable source, Constraint constaint){
             this.source = source;
-            this.destination = dest;
-            this.edge = edge;
+            this.constaint = constaint;
         }
     }
 
@@ -42,49 +40,54 @@ public class CSPSolver {
         }
     }
 
+    private boolean _couldSatisfyConstraint(Constraint cons, Queue<Variable> remainingVariables){
+        if (remainingVariables.size() == 0)
+            return !cons.isViolated(); // The constraint is not violated!
+        //Copy, so we don't ruin;
+        remainingVariables = new LinkedList<Variable>(remainingVariables);
+        Variable next_var = remainingVariables.remove();
+        for (Integer value : next_var.getLegalValues()){
+            next_var.setStartValue(value);
+            if (_couldSatisfyConstraint(cons, remainingVariables))
+                return true;
+        }
+        return false;
+    }
+
     // For every value in the domain, checks if there is any assignment s.t. the constraint would not be violated.
-    private List<Integer> _removeInconsistentValue(Variable source, Variable dest, Constraint cons){
+    private List<Integer> _removeInconsistentValue(Variable source, Constraint cons){
+        Queue<Variable> others = new LinkedList<Variable>(cons.getAffectedVariables());
+        others.remove(source);
         Integer previousX = source.getStartValue();
-        Integer previousY = dest.getStartValue();
         List<Integer> removed = new LinkedList<Integer>();
         for (Integer x : source.getLegalValues()){
             // Note that there is not harm in resetting the variables - legal values is the only value if only
             // such value possible.
-            boolean possibleAssignment = false;
             source.setStartValue(x);
-            for (Integer y : dest.getLegalValues()){
-                dest.setStartValue(y);
-                if (!cons.isViolated()){
-                    possibleAssignment = true;
-                }
-            }
-            if (!possibleAssignment){
+            if (!_couldSatisfyConstraint(cons, others)){
                 removed.add(x);
                 source.removeLegalValue(x);
             }
         }
         source.setStartValue(previousX);
-        dest.setStartValue(previousY);
         return removed;
     }
 
     // Returns a map of removed values, if detected inconsistency, returns null.
-    private Map<Variable, List<Integer>> arcConsistency(){
+    private Map<Variable, List<Integer>> generalizedArcConsistency(){
         Map<Variable, List<Integer>> inconsistentValues = new TreeMap<Variable, List<Integer>>();
         Queue<Arc> arcs = new LinkedList<Arc>();
         // TODO: should arc consistency be only on changed nodes? (Then we get as variable the relevant variable?)
         for (Variable first : variableList){
             for (Constraint cons : first.getConstraints())
-                for (Variable second : cons.getAffectedVariables())
-                    if (first != second)
-                        arcs.add(new Arc(first, second, cons));
+                arcs.add(new Arc(first, cons));
         }
 
         while (!arcs.isEmpty()){
             Arc arc = arcs.remove();
 
             // Go over different instantiation and check if the relevant constraint is violated
-            List<Integer> values = _removeInconsistentValue(arc.source, arc.destination, arc.edge);
+            List<Integer> values = _removeInconsistentValue(arc.source, arc.constaint);
 
             // arc.source changed, so we need to add all others:
             if (values.size() > 0) {
@@ -104,7 +107,7 @@ public class CSPSolver {
                 for (Constraint cons : arc.source.getConstraints())
                     for (Variable first : cons.getAffectedVariables())
                         if (first != arc.source)
-                            arcs.add(new Arc(first, arc.source, cons));
+                            arcs.add(new Arc(first, cons));
             }
         }
         return inconsistentValues;
@@ -123,7 +126,7 @@ public class CSPSolver {
             // No need to check if variable is consistent - arc consistency is taking care of it
             to_assign.setStartValue(num);
             // We assigned - we need to check for consistency
-            Map<Variable, List<Integer>> inconsistentValues = arcConsistency();
+            Map<Variable, List<Integer>> inconsistentValues = generalizedArcConsistency();
             // There is a node with no domain
             if (inconsistentValues == null)
                 return false;
