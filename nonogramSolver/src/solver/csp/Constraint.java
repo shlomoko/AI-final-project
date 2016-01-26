@@ -23,4 +23,5 @@ public abstract class Constraint {
         result.add(secondVar);
         return result;
     }
+
 }

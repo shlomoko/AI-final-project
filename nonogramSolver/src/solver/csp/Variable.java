@@ -59,6 +59,14 @@ public class Variable {
 
     public List<Constraint> getConstraints(){
         return constraints;
+    };
+
+    public int getConstraintNumber(){
+        int sum = 0;
+        for (Constraint cons : constraints){
+            sum = sum + cons.getAffectedVariables().size();
+        }
+        return sum;
     }
 
     public void removeLegalValue(Integer value){
