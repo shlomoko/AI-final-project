@@ -1,6 +1,6 @@
 package solver.csp;
 
-import solver.csp.heuristics.ConstraintHeuristic;
+import solver.csp.heuristics.ValueHeuristic;
 import solver.csp.heuristics.VariableHeuristic;
 
 import java.util.*;
@@ -23,13 +23,13 @@ public class CSPSolver {
 
     List<Variable> variableList;
     List<Variable> unassigned;
-    VariableHeuristic variableHeuristic;
-    ConstraintHeuristic constraintHeuristic;
+    VariableHeuristic variableHeuristic; // Which variable to choose next
+    ValueHeuristic valueHeuristic; // At what order we assign the values to the variable (startValues)
 
     //constructor
-    public CSPSolver(List<Variable> variables, VariableHeuristic variableHeur, ConstraintHeuristic constraintHeur){
+    public CSPSolver(List<Variable> variables, VariableHeuristic variableHeur, ValueHeuristic valueHeur){
         this.variableHeuristic = variableHeur;
-        this.constraintHeuristic = constraintHeur;
+        this.valueHeuristic = valueHeur;
         this.variableList = variables;
         this.unassigned = new ArrayList<Variable>(variables); // A shallow copy - all items point to the original
     }
@@ -119,7 +119,7 @@ public class CSPSolver {
     public boolean backtracking(){
         if (unassigned.size() == 0) return true;
         Variable to_assign = variableHeuristic.select(unassigned);
-        for (int num : constraintHeuristic.order(to_assign.getLegalValues())){
+        for (int num : valueHeuristic.order(to_assign)){
             // No need to check if variable is consistent - arc consistency is taking care of it
             to_assign.setStartValue(num);
             // We assigned - we need to check for consistency
