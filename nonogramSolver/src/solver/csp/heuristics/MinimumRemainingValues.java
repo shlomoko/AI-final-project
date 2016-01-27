@@ -11,12 +11,18 @@ public class MinimumRemainingValues implements  VariableHeuristic{
         Variable minVar = null;
         List<Variable> tie = null;
         for (Variable variable : Vars) {
-            if(variable.getLegalValues().size() == minVar.getLegalValues().size())
-                tie.add(variable);
-            if (variable.getLegalValues().size() < minVar.getLegalValues().size()) {
+            if (minVar == null){
                 minVar = variable;
-                tie = null;
                 tie.add(minVar);
+            } else {
+                if (variable.getLegalValues().size() == minVar.getLegalValues().size()) {
+                    tie.add(variable);
+                }
+                if (variable.getLegalValues().size() < minVar.getLegalValues().size()) {
+                    minVar = variable;
+                    tie = null;
+                    tie.add(minVar);
+                }
             }
         }
         if(tie.size() > 1)
