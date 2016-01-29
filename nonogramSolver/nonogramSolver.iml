@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Gnonograms-0.9.7-jre6" />
+    <orderEntry type="module" module-name="AI-final-project" exported="" />
   </component>
 </module>

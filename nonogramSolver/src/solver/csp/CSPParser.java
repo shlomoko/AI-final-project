@@ -32,13 +32,12 @@ public class CSPParser {
             for (int j=0; j<colDim; j++){
                 List<Variable> currRow = rowVariables.get(i);
                 List<Variable> currCol = colVariables.get(j);
-
+                Constraint constraint = new IntersectConstraint(i, j, currRow, currCol);
                 for(Variable rowVar : currRow){
-                    for(Variable colVar : currCol){
-                        Constraint constraint = new IntersectConstraint(rowVar, colVar);
-                        rowVar.addConstraint(constraint);
-                        colVar.addConstraint(constraint);
-                    }
+                    rowVar.addConstraint(constraint);
+                }
+                for(Variable colVar :currCol){
+                    colVar.addConstraint(constraint);
                 }
             }
         }
@@ -64,7 +63,7 @@ public class CSPParser {
         List<List<Variable>> variableList = isRow ? rowVariables : colVariables;
         for (int i = 0; i< dim; i++){
             List<Variable> currRow = variableList.get(i);
-            Constraint constraint = new LastBlockConstraint(currRow.get(currRow.size()-1), currRow.get(currRow.size()-1));
+            Constraint constraint = new LastBlockConstraint(currRow.get(currRow.size()-1), dim);
             currRow.get(currRow.size()-1).addConstraint(constraint);
         }
     }

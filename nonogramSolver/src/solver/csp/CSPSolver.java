@@ -121,7 +121,7 @@ public class CSPSolver {
 
 
     /**
-     * Implemnting backtracking recursively to solve CSV, using the variable heuristic and
+     * Implementing backtracking recursively to solve CSV, using the variable heuristic and
      * constraint heuristic.
      * @return whether the assignment succeeded or not
      */

@@ -8,8 +8,8 @@ import java.util.List;
  * Intersection constraint - check if a cell has a specific color
  */
 public class IntersectConstraint implements Constraint {
-    ArrayList<Variable> rowBlocks;
-    ArrayList<Variable> columnBlocks;
+    List<Variable> rowBlocks;
+    List<Variable> columnBlocks;
     Integer row;
     Integer column;
 
@@ -21,7 +21,7 @@ public class IntersectConstraint implements Constraint {
      * @param rowBlocks the blocks in the specified row
      * @param columnBlocks the columns in the specified columns
      */
-    public IntersectConstraint(int row, int column, ArrayList<Variable> rowBlocks, ArrayList<Variable> columnBlocks){
+    public IntersectConstraint(int row, int column, List<Variable> rowBlocks, List<Variable> columnBlocks){
         this.rowBlocks = rowBlocks;
         this.columnBlocks = columnBlocks;
         this.row = row;
@@ -29,7 +29,7 @@ public class IntersectConstraint implements Constraint {
     }
 
     // Binary search won't work - we have null value
-    private Variable _searchBlocks(ArrayList<Variable> block, int num){
+    private Variable _searchBlocks(List<Variable> block, int num){
         for (int i = 0; i < block.size(); i++){
             if (block.get(i).getStartValue() > num){
                 // We passed the relevant value
