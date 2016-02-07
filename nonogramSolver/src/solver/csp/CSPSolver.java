@@ -23,9 +23,11 @@ public class CSPSolver {
     List<Variable> unassigned;
     VariableHeuristic variableHeuristic; // Which variable to choose next
     ValueHeuristic valueHeuristic; // At what order we assign the values to the variable (startValues)
+    CSPManager manager;
 
     //constructor
-    public CSPSolver(List<Variable> variables, VariableHeuristic variableHeur, ValueHeuristic valueHeur){
+    public CSPSolver(List<Variable> variables, VariableHeuristic variableHeur, ValueHeuristic valueHeur, CSPManager manager){
+        this.manager = manager;
         this.variableHeuristic = variableHeur;
         this.valueHeuristic = valueHeur;
         this.variableList = variables;
@@ -131,6 +133,7 @@ public class CSPSolver {
         for (int num : valueHeuristic.order(to_assign)){
             // No need to check if variable is consistent - arc consistency is taking care of it
             to_assign.setStartValue(num);
+            manager.display(getVariables());
             // We assigned - we need to check for consistency
             Map<Variable, List<Integer>> inconsistentValues = generalizedArcConsistency();
             // There is a node with no domain

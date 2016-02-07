@@ -85,4 +85,8 @@ public class Variable {
         return index;
     }
 
+    public boolean isRow(){
+        return isRow;
+    }
+
 }
