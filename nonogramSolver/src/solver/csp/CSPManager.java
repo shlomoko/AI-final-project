@@ -17,7 +17,11 @@ public class CSPManager {
     private boolean running;
 
     public CSPManager(File file, Grid grid, VariableHeuristic varHeur, ValueHeuristic valueHeur){
-        List<Variable> variables = new CSPParser().parser(file.getName());
+        this.grid = grid;
+        CSPParser parser = new CSPParser();
+        List<Variable> variables = parser.parser(file.getName());
+        //TODO: need a better way to do this
+        this.grid.setSize(parser.colDim, parser.rowDim);
         this.solver = new CSPSolver(variables, varHeur, valueHeur, this);
         running = false;
     }
