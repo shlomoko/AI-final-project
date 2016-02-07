@@ -31,9 +31,9 @@ public class IntersectConstraint implements Constraint {
     // Binary search won't work - we have null value
     private Variable _searchBlocks(List<Variable> block, int num){
         for (int i = 0; i < block.size(); i++){
-            if (block.get(i).getStartValue() > num){
+            if (block.get(i).getStartValue() != null && block.get(i).getStartValue() > num){
                 // We passed the relevant value
-                if (i == 1)
+                if (i < 1)
                     return null;
                 return block.get(i-1);
             }
@@ -45,8 +45,12 @@ public class IntersectConstraint implements Constraint {
     public boolean isViolated() {
         Variable rowCandidate = _searchBlocks(rowBlocks, row);
         Variable columnCandidate = _searchBlocks(rowBlocks, row);
-        if (rowCandidate == null || columnCandidate == null)
+        if (rowCandidate == null || columnCandidate == null) {
             return false;
+        }
+        if (rowCandidate.getStartValue() == null || columnCandidate.getStartValue() == null){
+            return false;
+        }
         boolean isRowMarked = rowCandidate.getStartValue() + rowCandidate.getLength() > row;
         boolean isColumnMarked = columnCandidate.getStartValue() + columnCandidate.getLength() > column;
         return (isRowMarked && isColumnMarked) || (!isRowMarked && !isColumnMarked);

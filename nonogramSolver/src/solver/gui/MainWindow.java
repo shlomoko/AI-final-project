@@ -12,10 +12,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import solver.csp.CSPManager;
-import solver.csp.heuristics.DegreeHeuristic;
-import solver.csp.heuristics.MinimumRemainingValues;
-import solver.csp.heuristics.ValueHeuristic;
-import solver.csp.heuristics.VariableHeuristic;
+import solver.csp.heuristics.*;
 
 import java.io.File;
 
@@ -29,7 +26,7 @@ public class MainWindow extends Application {
     ChoiceBox<VariableHeuristicsEnum> variableHeuristics;
 
     private enum ValueHeuristicsEnum {
-        UNDEFINED("undefined");
+        LCV("Least Constraining Value");
 
         private String label;
 
@@ -67,7 +64,7 @@ public class MainWindow extends Application {
         Pane buttons = new HBox();
         valueHeuristics = new ChoiceBox<ValueHeuristicsEnum>();
         valueHeuristics.getItems().setAll(ValueHeuristicsEnum.values());
-        valueHeuristics.setValue(ValueHeuristicsEnum.UNDEFINED);
+        valueHeuristics.setValue(ValueHeuristicsEnum.LCV);
         variableHeuristics = new ChoiceBox<VariableHeuristicsEnum>();
         variableHeuristics.getItems().setAll(VariableHeuristicsEnum.values());
         variableHeuristics.setValue(VariableHeuristicsEnum.DEGREE);
@@ -75,13 +72,6 @@ public class MainWindow extends Application {
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                /*Color[][] colors = new Color[10][10];
-                for (int i=0; i<10; i++){
-                    for (int j = 0; j<10; j++){
-                        colors[i][j] = Color.GREEN;
-                    }
-                }
-                grid.setColor(colors);*/
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Open Resource File");
                 File file = fileChooser.showOpenDialog(primaryStage);
@@ -91,6 +81,7 @@ public class MainWindow extends Application {
                     alert(primaryStage, "Invalid heuristic chosen");
                 } else {
                     manager = new CSPManager(file, grid, varHeur, valueHeur);
+                    new Thread(manager).start();
                 }
             }
         });
@@ -128,8 +119,8 @@ public class MainWindow extends Application {
 
     public ValueHeuristic getChosenValueHeurisitic() {
         switch (valueHeuristics.getValue()){
-            case UNDEFINED:
-                return null;
+            case LCV:
+                return new LeastConstriningValue();
         }
         return null;
     }

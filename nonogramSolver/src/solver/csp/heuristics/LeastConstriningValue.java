@@ -15,7 +15,7 @@ public class LeastConstriningValue implements ValueHeuristic {
         if (variable.getStartValue() != null){
             throw new RuntimeException("Variable must be null upon valueHeuristic");
         }
-        TreeSet<Variable> varList = new TreeSet<Variable>();
+        Set<Variable> varList = new HashSet<Variable>();
         for (Constraint constr: variable.getConstraints()){
             varList.addAll(constr.getAffectedVariables());
         }

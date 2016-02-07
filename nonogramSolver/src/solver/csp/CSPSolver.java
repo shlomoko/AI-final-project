@@ -83,7 +83,7 @@ public class CSPSolver {
 
     // Returns a map of removed values, if detected inconsistency, returns null.
     private Map<Variable, List<Integer>> generalizedArcConsistency(){
-        Map<Variable, List<Integer>> inconsistentValues = new TreeMap<Variable, List<Integer>>();
+        Map<Variable, List<Integer>> inconsistentValues = new HashMap<Variable, List<Integer>>();
         Queue<Arc> arcs = new LinkedList<Arc>();
         // TODO: should arc consistency be only on changed nodes? (Then we get as variable the relevant variable?)
         for (Variable first : variableList){
@@ -130,22 +130,25 @@ public class CSPSolver {
     public boolean backtracking(){
         if (unassigned.size() == 0) return true;
         Variable to_assign = variableHeuristic.select(unassigned);
+        System.out.println(to_assign);
+        unassigned.remove(to_assign);
         for (int num : valueHeuristic.order(to_assign)){
             // No need to check if variable is consistent - arc consistency is taking care of it
             to_assign.setStartValue(num);
             manager.display(getVariables());
             // We assigned - we need to check for consistency
             Map<Variable, List<Integer>> inconsistentValues = generalizedArcConsistency();
-            // There is a node with no domain
-            if (inconsistentValues == null)
-                return false;
-            // Recursively continue the enumeration
-            if (backtracking())
-                return true;
+            // Arc consistency found legal assignments
+            if (inconsistentValues != null) {
+                // Recursively continue the enumeration
+                if (backtracking())
+                    return true;
+            }
             // Undo arcConsistency - after coming back from the backtracking
             _undoRemoveInconsistentValues(inconsistentValues);
-            to_assign.removeLegalValue(num);
         }
+        to_assign.setStartValue(null);
+        unassigned.add(to_assign);
         return false;
     }
 

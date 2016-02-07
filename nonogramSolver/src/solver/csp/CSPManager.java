@@ -1,5 +1,6 @@
 package solver.csp;
 
+import javafx.concurrent.Task;
 import javafx.scene.paint.Color;
 import solver.csp.heuristics.ValueHeuristic;
 import solver.csp.heuristics.VariableHeuristic;
@@ -11,7 +12,7 @@ import java.util.List;
 /**
  * Created by tmrlvi on 07/02/2016.
  */
-public class CSPManager {
+public class CSPManager extends Task<Void>{
     private Grid grid;
     private CSPSolver solver;
     private boolean running;
@@ -19,7 +20,7 @@ public class CSPManager {
     public CSPManager(File file, Grid grid, VariableHeuristic varHeur, ValueHeuristic valueHeur){
         this.grid = grid;
         CSPParser parser = new CSPParser();
-        List<Variable> variables = parser.parser(file.getName());
+        List<Variable> variables = parser.parser(file.getAbsolutePath());
         //TODO: need a better way to do this
         this.grid.setSize(parser.colDim, parser.rowDim);
         this.solver = new CSPSolver(variables, varHeur, valueHeur, this);
@@ -34,41 +35,28 @@ public class CSPManager {
             }
         }
         for (Variable var : variables){
-            if (var.isRow()){
-                for (int i=0; i < var.getLength(); i++ ){
-                    if (colors[var.getStartValue() + i][var.getIndex()] != Color.GRAY){
-                        colors[var.getStartValue() + i][var.getIndex()] = Color.BLACK;
-                    } else{
-                        colors[var.getStartValue() + i][var.getIndex()] = Color.RED;
+            if (var.getStartValue() != null) {
+                if (var.isRow()) {
+                    for (int i = 0; i < var.getLength(); i++) {
+                        if (colors[var.getStartValue() + i][var.getIndex()] != Color.GRAY) {
+                            colors[var.getStartValue() + i][var.getIndex()] = Color.BLACK;
+                        } else {
+                            colors[var.getStartValue() + i][var.getIndex()] = Color.RED;
+                        }
                     }
-                }
-            } else {
-                for (int i=0; i < var.getLength(); i++ ){
-                    if (colors[var.getIndex()][var.getStartValue() + i] != Color.GRAY){
-                        colors[var.getIndex()][var.getStartValue() + i] = Color.BLACK;
-                    } else{
-                        colors[var.getIndex()][var.getStartValue() + i] = Color.GREEN;
+                } else {
+                    for (int i = 0; i < var.getLength(); i++) {
+                        if (colors[var.getIndex()][var.getStartValue() + i] != Color.GRAY) {
+                            colors[var.getIndex()][var.getStartValue() + i] = Color.BLACK;
+                        } else {
+                            colors[var.getIndex()][var.getStartValue() + i] = Color.GREEN;
+                        }
                     }
                 }
             }
         }
-        //TODO: find a better way to implement pause
-        while (!running){
-            try {
-                Thread.sleep(1);
-            } catch (InterruptedException e) {}
-        }
+        //TODO: implemenet pause
         grid.setColor(colors);
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {}
-    }
-
-    public void start(){
-        running = true;
-        if (this.solver.backtracking()){
-            display(this.solver.getVariables());
-        }
     }
 
     public void pause(){
@@ -77,5 +65,13 @@ public class CSPManager {
 
     public void resume(){
         running = true;
+    }
+
+    @Override
+    protected Void call() throws Exception {
+        if (this.solver.backtracking()){
+            display(this.solver.getVariables());
+        }
+        return null;
     }
 }
