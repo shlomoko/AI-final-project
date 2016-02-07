@@ -4,11 +4,12 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import solver.csp.CSPManager;
 import solver.csp.heuristics.DegreeHeuristic;
@@ -87,10 +88,7 @@ public class MainWindow extends Application {
                 VariableHeuristic varHeur = getChosenVariableHeuristic();
                 ValueHeuristic valueHeur = getChosenValueHeurisitic();
                 if (valueHeur == null || varHeur == null){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText("Invalid Heuristics Chosen");
-                    alert.setContentText("Ensure you chose a legal value");
-                    alert.showAndWait();
+                    alert(primaryStage, "Invalid heuristic chosen");
                 } else {
                     manager = new CSPManager(file, grid, varHeur, valueHeur);
                 }
@@ -106,6 +104,16 @@ public class MainWindow extends Application {
         primaryStage.show();
     }
 
+    private void alert(Stage stage,String s) {
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(stage);
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.getChildren().add(new Text("Error: " + s));
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
+    }
 
 
     public VariableHeuristic getChosenVariableHeuristic() {
