@@ -37,7 +37,7 @@ public class CSPManager extends Task<Void>{
         for (Variable var : variables){
             if (var.getStartValue() != null) {
                 if (var.isRow()) {
-                    for (int i = 0; i < var.getLength(); i++) {
+                    for (int i = 0; i < var.getLength() && var.getStartValue() + i < grid.getColumns(); i++) {
                         if (colors[var.getStartValue() + i][var.getIndex()] != Color.GRAY) {
                             colors[var.getStartValue() + i][var.getIndex()] = Color.BLACK;
                         } else {
@@ -45,7 +45,7 @@ public class CSPManager extends Task<Void>{
                         }
                     }
                 } else {
-                    for (int i = 0; i < var.getLength(); i++) {
+                    for (int i = 0; i < var.getLength() && var.getStartValue() + i < grid.getRows(); i++) {
                         if (colors[var.getIndex()][var.getStartValue() + i] != Color.GRAY) {
                             colors[var.getIndex()][var.getStartValue() + i] = Color.BLACK;
                         } else {
@@ -70,8 +70,10 @@ public class CSPManager extends Task<Void>{
     @Override
     protected Void call() throws Exception {
         if (this.solver.backtracking()){
-            display(this.solver.getVariables());
+            System.out.println("Success!");
         }
+        display(this.solver.getVariables());
+        System.out.println("done");
         return null;
     }
 }

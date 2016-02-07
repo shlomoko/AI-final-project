@@ -35,6 +35,7 @@ public class CSPSolver {
     }
 
     private void _undoRemoveInconsistentValues(Map<Variable, List<Integer>> map){
+        if (map == null) return;
         for (Map.Entry<Variable, List<Integer>> neighbor : map.entrySet()){
             for (Integer value : neighbor.getValue()){
                 neighbor.getKey().addLegalValue(value);
@@ -68,7 +69,8 @@ public class CSPSolver {
         others.remove(source);
         Integer previousX = source.getStartValue();
         List<Integer> removed = new LinkedList<Integer>();
-        for (Integer x : source.getLegalValues()){
+        List<Integer> legalValues = new LinkedList<Integer>(source.getLegalValues());
+        for (Integer x : legalValues){
             // Note that there is not harm in resetting the variables - legal values is the only value if only
             // such value possible.
             source.setStartValue(x);

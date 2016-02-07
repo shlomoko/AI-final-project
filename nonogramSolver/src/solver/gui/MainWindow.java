@@ -1,6 +1,7 @@
 package solver.gui;
 
 import javafx.application.Application;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -91,7 +92,12 @@ public class MainWindow extends Application {
         running.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                alert(primaryStage, "" + manager.isRunning());
+                if (manager != null) {
+                    alert(primaryStage, "" + manager.getState());
+                    if (manager.getState() == Worker.State.FAILED) {
+                        manager.exceptionProperty().getValue().printStackTrace();
+                    }
+                }
             }
         });
         buttons.getChildren().addAll(valueHeuristics, variableHeuristics, btn, running);
