@@ -73,6 +73,7 @@ public class MainWindow extends Application {
             @Override
             public void handle(ActionEvent event) {
                 FileChooser fileChooser = new FileChooser();
+                fileChooser.setInitialDirectory(new File("C:\\Develop\\AI-final-project\\games\\easy"));
                 fileChooser.setTitle("Open Resource File");
                 File file = fileChooser.showOpenDialog(primaryStage);
                 VariableHeuristic varHeur = getChosenVariableHeuristic();
@@ -82,10 +83,18 @@ public class MainWindow extends Application {
                 } else {
                     manager = new CSPManager(file, grid, varHeur, valueHeur);
                     new Thread(manager).start();
+
                 }
             }
         });
-        buttons.getChildren().addAll(valueHeuristics, variableHeuristics, btn);
+        Button running = new Button("Running?");
+        running.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                alert(primaryStage, "" + manager.isRunning());
+            }
+        });
+        buttons.getChildren().addAll(valueHeuristics, variableHeuristics, btn, running);
         root.addRow(1,buttons);
 
         Scene scene = new Scene(root, 300, 250);

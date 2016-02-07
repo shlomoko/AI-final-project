@@ -86,7 +86,7 @@ public class CSPParser {
                         String[] rowNumbers = file.readLine().split(",");
                         rowVariables.add(new ArrayList<Variable>());
                         for (int j=0; j<rowNumbers.length; j++){
-                            Variable var = new Variable(Integer.parseInt(rowNumbers[j]),true, j, rowDim);
+                            Variable var = new Variable(Integer.parseInt(rowNumbers[j]),true, i, rowDim);
                             rowVariables.get(i).add(var);
                             variables.add(var);
                         }
@@ -96,7 +96,7 @@ public class CSPParser {
                         String[] colNumbers = file.readLine().split(",");
                         colVariables.add(new ArrayList<Variable>());
                         for (int j=0; j<colNumbers.length; j++){
-                            Variable var = new Variable(Integer.parseInt(colNumbers[j]),false, j, colDim);
+                            Variable var = new Variable(Integer.parseInt(colNumbers[j]),false, i, colDim);
                             colVariables.get(i).add(var);
                             variables.add(var);
                         }

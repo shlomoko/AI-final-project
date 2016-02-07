@@ -70,11 +70,11 @@ public class Variable {
     }
 
     public void removeLegalValue(Integer value){
-        legalValues.add(value);
+        legalValues.remove(value);
     }
 
     public void addLegalValue(Integer value){
-        legalValues.remove(value);
+        legalValues.add(value);
     }
 
     public int getLength(){
