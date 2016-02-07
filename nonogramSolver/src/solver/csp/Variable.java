@@ -89,4 +89,17 @@ public class Variable {
         return isRow;
     }
 
+    public boolean isLegalValue(Integer value){
+        Integer oldValue = getStartValue();
+        setStartValue(value);
+        for (Constraint constr : getConstraints()){
+            if (constr.isViolated()){
+                setStartValue(oldValue);
+                return false;
+            }
+        }
+        setStartValue(oldValue);
+        return true;
+    }
+
 }
