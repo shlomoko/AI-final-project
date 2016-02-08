@@ -43,17 +43,17 @@ public class IntersectConstraint implements Constraint {
 
     @Override
     public boolean isViolated() {
-        Variable rowCandidate = _searchBlocks(rowBlocks, row);
-        Variable columnCandidate = _searchBlocks(rowBlocks, row);
+        Variable rowCandidate = _searchBlocks(rowBlocks, column);
+        Variable columnCandidate = _searchBlocks(columnBlocks, row);
         if (rowCandidate == null || columnCandidate == null) {
             return false;
         }
         if (rowCandidate.getStartValue() == null || columnCandidate.getStartValue() == null){
             return false;
         }
-        boolean isRowMarked = rowCandidate.getStartValue() + rowCandidate.getLength() > row;
-        boolean isColumnMarked = columnCandidate.getStartValue() + columnCandidate.getLength() > column;
-        return (isRowMarked && isColumnMarked) || (!isRowMarked && !isColumnMarked);
+        boolean isRowMarked = rowCandidate.getStartValue() + rowCandidate.getLength() > column;
+        boolean isColumnMarked = columnCandidate.getStartValue() + columnCandidate.getLength() > row;
+        return (isRowMarked && !isColumnMarked) || (!isRowMarked && isColumnMarked);
     }
 
     @Override
