@@ -38,21 +38,24 @@ public class IntersectConstraint implements Constraint {
                 return block.get(i-1);
             }
         }
-        return null;
+        return block.get(block.size()-1); //If not find - get last
+    }
+
+    private boolean _isMarked(Variable block, Integer cell){
+        return (block != null) && (block.getStartValue() + block.getLength() > cell);
     }
 
     @Override
     public boolean isViolated() {
         Variable rowCandidate = _searchBlocks(rowBlocks, column);
         Variable columnCandidate = _searchBlocks(columnBlocks, row);
-        if (rowCandidate == null || columnCandidate == null) {
+        // The first block found is already too small
+        if ((rowCandidate != null && rowCandidate.getStartValue() == null) ||
+                (columnCandidate != null && columnCandidate.getStartValue() == null)){
             return false;
         }
-        if (rowCandidate.getStartValue() == null || columnCandidate.getStartValue() == null){
-            return false;
-        }
-        boolean isRowMarked = rowCandidate.getStartValue() + rowCandidate.getLength() > column;
-        boolean isColumnMarked = columnCandidate.getStartValue() + columnCandidate.getLength() > row;
+        boolean isRowMarked = _isMarked(rowCandidate, column);
+        boolean isColumnMarked = _isMarked(columnCandidate, row);
         return (isRowMarked && !isColumnMarked) || (!isRowMarked && isColumnMarked);
     }
 

@@ -68,11 +68,15 @@ public class CSPManager extends Task<Void>{
 
     @Override
     protected Void call() throws Exception {
-        if (this.solver.backtracking()){
-            System.out.println("Success!");
+        try {
+            if (this.solver.backtracking()) {
+                System.out.println("Success!");
+            }
+            display(this.solver.getVariables());
+            System.out.println("done");
+        } catch (Throwable e) {
+            e.printStackTrace();
         }
-        display(this.solver.getVariables());
-        System.out.println("done");
         return null;
     }
 }
