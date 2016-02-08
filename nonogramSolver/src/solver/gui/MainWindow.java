@@ -74,17 +74,19 @@ public class MainWindow extends Application {
             @Override
             public void handle(ActionEvent event) {
                 FileChooser fileChooser = new FileChooser();
-                fileChooser.setInitialDirectory(new File("C:\\Develop\\AI-final-project\\games\\easy"));
+                fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
                 fileChooser.setTitle("Open Resource File");
                 File file = fileChooser.showOpenDialog(primaryStage);
-                VariableHeuristic varHeur = getChosenVariableHeuristic();
-                ValueHeuristic valueHeur = getChosenValueHeurisitic();
-                if (valueHeur == null || varHeur == null){
-                    alert(primaryStage, "Invalid heuristic chosen");
-                } else {
-                    manager = new CSPManager(file, grid, varHeur, valueHeur);
-                    new Thread(manager).start();
+                if (file != null) {
+                    VariableHeuristic varHeur = getChosenVariableHeuristic();
+                    ValueHeuristic valueHeur = getChosenValueHeurisitic();
+                    if (valueHeur == null || varHeur == null) {
+                        alert(primaryStage, "Invalid heuristic chosen");
+                    } else {
+                        manager = new CSPManager(file, grid, varHeur, valueHeur);
+                        new Thread(manager).start();
 
+                    }
                 }
             }
         });
