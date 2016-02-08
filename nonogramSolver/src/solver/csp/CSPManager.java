@@ -56,6 +56,9 @@ public class CSPManager extends Task<Void>{
         }
         //TODO: implemenet pause
         grid.setColor(colors);
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {}
     }
 
     public void pause(){
@@ -69,7 +72,7 @@ public class CSPManager extends Task<Void>{
     @Override
     protected Void call() throws Exception {
         try {
-            if (this.solver.backtracking()) {
+            if (this.solver.backtracking(true)) {
                 System.out.println("Success!");
             }
             display(this.solver.getVariables());

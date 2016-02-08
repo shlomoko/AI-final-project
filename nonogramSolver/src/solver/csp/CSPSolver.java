@@ -129,25 +129,29 @@ public class CSPSolver {
      * constraint heuristic.
      * @return whether the assignment succeeded or not
      */
-    public boolean backtracking(){
+    public boolean backtracking(boolean arcConsistent){
         if (unassigned.size() == 0) return true;
         Variable to_assign = variableHeuristic.select(unassigned);
         System.out.println(to_assign);
         unassigned.remove(to_assign);
         for (int num : valueHeuristic.order(to_assign)){
             // No need to check if variable is consistent - arc consistency is taking care of it
-            to_assign.setStartValue(num);
-            manager.display(getVariables());
-            // We assigned - we need to check for consistency
-            Map<Variable, List<Integer>> inconsistentValues = generalizedArcConsistency();
-            // Arc consistency found legal assignments
-            if (inconsistentValues != null) {
-                // Recursively continue the enumeration
-                if (backtracking())
-                    return true;
+            if (to_assign.isLegalValue(num)) {
+                to_assign.setStartValue(num);
+                manager.display(getVariables());
+                // We assigned - we need to check for consistency
+                Map<Variable, List<Integer>> inconsistentValues = null;
+                if (arcConsistent)
+                    inconsistentValues = generalizedArcConsistency();
+                // Arc consistency found legal assignments
+                if (!arcConsistent || inconsistentValues != null) {
+                    // Recursively continue the enumeration
+                    if (backtracking(arcConsistent))
+                        return true;
+                }
+                // Undo arcConsistency - after coming back from the backtracking
+                _undoRemoveInconsistentValues(inconsistentValues);
             }
-            // Undo arcConsistency - after coming back from the backtracking
-            _undoRemoveInconsistentValues(inconsistentValues);
         }
         to_assign.setStartValue(null);
         unassigned.add(to_assign);

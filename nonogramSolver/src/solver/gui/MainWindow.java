@@ -42,7 +42,8 @@ public class MainWindow extends Application {
 
     private enum VariableHeuristicsEnum {
         DEGREE("Degree"),
-        MRV("Minumum Remaining Value");
+        MRV("Minumum Remaining Value"),
+        LENGTH("Longest Block");
 
         private String label;
 
@@ -132,6 +133,8 @@ public class MainWindow extends Application {
                 return new DegreeHeuristic();
             case MRV:
                 return new MinimumRemainingValues();
+            case LENGTH:
+                return new BlockLengthHeuristic();
         }
         return null;
     }

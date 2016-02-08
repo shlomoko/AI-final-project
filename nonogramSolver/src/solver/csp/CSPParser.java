@@ -26,8 +26,8 @@ public class CSPParser {
         addOrderConstraint(false);
 
         //Add Last Block Constraint to the variables
-        addLastBlockConstraint(true);
-        addLastBlockConstraint(false);
+        //addLastBlockConstraint(true);
+        //addLastBlockConstraint(false);
 
         //Add Intersect Constraint to the variables
         for(int i=0; i<rowDim; i++){
@@ -80,10 +80,11 @@ public class CSPParser {
 
     private void addLastBlockConstraint(boolean isRow){
         int dim = isRow ? rowDim : colDim;
+        int domainSize = isRow ? colDim : rowDim;
         List<List<Variable>> variableList = isRow ? rowVariables : colVariables;
         for (int i = 0; i< dim; i++){
             List<Variable> currRow = variableList.get(i);
-            Constraint constraint = new LastBlockConstraint(currRow.get(currRow.size()-1), dim);
+            Constraint constraint = new LastBlockConstraint(currRow.get(currRow.size()-1), domainSize);
             currRow.get(currRow.size()-1).addConstraint(constraint);
         }
     }
@@ -110,7 +111,7 @@ public class CSPParser {
                         rowVariables.add(new ArrayList<Variable>());
                         for (int j=0; j<rowNumbers.length; j++){
                             int value = Integer.parseInt(rowNumbers[j]);
-                            Variable var = new Variable(value,true, i, rowDim);
+                            Variable var = new Variable(value,true, i, colDim - value + 1);
                             rowHints[i][j] = value;
                             rowVariables.get(i).add(var);
                             variables.add(var);
@@ -123,7 +124,7 @@ public class CSPParser {
                         colVariables.add(new ArrayList<Variable>());
                         for (int j=0; j<colNumbers.length; j++){
                             int value = Integer.parseInt(colNumbers[j]);
-                            Variable var = new Variable(value,false, i, colDim);
+                            Variable var = new Variable(value,false, i, rowDim - value + 1);
                             colHints[i][j] = value;
                             colVariables.get(i).add(var);
                             variables.add(var);
