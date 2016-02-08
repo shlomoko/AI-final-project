@@ -29,7 +29,11 @@ public class IntersectConstraint implements Constraint {
     }
 
     // Binary search won't work - we have null value
+    // Return the last block before the row, or null if all blocks are after
     private Variable _searchBlocks(List<Variable> block, int num){
+        if (block.size() == 0){
+            return null;
+        }
         for (int i = 0; i < block.size(); i++){
             if (block.get(i).getStartValue() != null && block.get(i).getStartValue() > num){
                 // We passed the relevant value
@@ -49,7 +53,7 @@ public class IntersectConstraint implements Constraint {
     public boolean isViolated() {
         Variable rowCandidate = _searchBlocks(rowBlocks, column);
         Variable columnCandidate = _searchBlocks(columnBlocks, row);
-        // The first block found is already too small
+        // There is a block - but we don't know where it starts
         if ((rowCandidate != null && rowCandidate.getStartValue() == null) ||
                 (columnCandidate != null && columnCandidate.getStartValue() == null)){
             return false;
