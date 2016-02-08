@@ -57,6 +57,8 @@ public class MainWindow extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
+        primaryStage.setWidth(800);
+        primaryStage.setHeight(500);
         grid = new Grid(10, 10);
         GridPane root = new GridPane();
         root.addRow(0, grid);

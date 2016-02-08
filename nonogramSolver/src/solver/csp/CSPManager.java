@@ -19,11 +19,10 @@ public class CSPManager extends Task<Void>{
 
     public CSPManager(File file, Grid grid, VariableHeuristic varHeur, ValueHeuristic valueHeur){
         this.grid = grid;
-        CSPParser parser = new CSPParser();
-        List<Variable> variables = parser.parser(file.getAbsolutePath());
-        //TODO: need a better way to do this
-        this.grid.setSize(parser.colDim, parser.rowDim);
-        this.solver = new CSPSolver(variables, varHeur, valueHeur, this);
+        CSPParser parser = new CSPParser(file.getAbsolutePath());
+        this.grid.setSize(parser.getColumns(), parser.getRows());
+        this.grid.setHint(parser.getColumnHints(), parser.getRowHints());
+        this.solver = new CSPSolver(parser.getVariables(), varHeur, valueHeur, this);
         running = false;
     }
 

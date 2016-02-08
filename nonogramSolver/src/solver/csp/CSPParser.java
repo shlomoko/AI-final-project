@@ -15,9 +15,11 @@ public class CSPParser {
     private List<Variable> variables;
     int rowDim;
     int colDim;
+    int[][] rowHints;
+    int[][] colHints;
 
 
-    public List<Variable> parser(String fileName){
+    public CSPParser(String fileName){
         this.readFile(fileName);
         //Add Order Constraint to the variables
         addOrderConstraint(true);
@@ -41,8 +43,26 @@ public class CSPParser {
                 }
             }
         }
+    }
 
+    public List<Variable> getVariables(){
         return variables;
+    }
+
+    public int getRows(){
+        return rowDim;
+    }
+
+    public int getColumns(){
+        return colDim;
+    }
+
+    public int[][] getRowHints(){
+        return rowHints;
+    }
+
+    public int[][] getColumnHints(){
+        return colHints;
     }
 
     private void addOrderConstraint(boolean isRow){
@@ -81,12 +101,17 @@ public class CSPParser {
                 if (line.equals("[Dimensions]")){
                     rowDim =  Integer.parseInt(file.readLine());
                     colDim =  Integer.parseInt(file.readLine());
+                    rowHints = new int[rowDim][];
+                    colHints = new int[colDim][];
                 }else if (line.equals("[Row clues]")){
                     for (int i = 0; i< rowDim; i++){
                         String[] rowNumbers = file.readLine().split(",");
+                        rowHints[i] = new int[rowNumbers.length];
                         rowVariables.add(new ArrayList<Variable>());
                         for (int j=0; j<rowNumbers.length; j++){
-                            Variable var = new Variable(Integer.parseInt(rowNumbers[j]),true, i, rowDim);
+                            int value = Integer.parseInt(rowNumbers[j]);
+                            Variable var = new Variable(value,true, i, rowDim);
+                            rowHints[i][j] = value;
                             rowVariables.get(i).add(var);
                             variables.add(var);
                         }
@@ -94,9 +119,12 @@ public class CSPParser {
                 }else if(line.equals("[Column clues]")){
                     for (int i = 0; i< colDim; i++){
                         String[] colNumbers = file.readLine().split(",");
+                        colHints[i] = new int[colNumbers.length];
                         colVariables.add(new ArrayList<Variable>());
                         for (int j=0; j<colNumbers.length; j++){
-                            Variable var = new Variable(Integer.parseInt(colNumbers[j]),false, i, colDim);
+                            int value = Integer.parseInt(colNumbers[j]);
+                            Variable var = new Variable(value,false, i, colDim);
+                            colHints[i][j] = value;
                             colVariables.get(i).add(var);
                             variables.add(var);
                         }
