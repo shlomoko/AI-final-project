@@ -16,6 +16,7 @@ public class Variable {
     private int index;
     private Set<Integer> legalValues; // The possible indexes of start.
     private List<Constraint> constraints;
+    private List<Integer> rowSum;
 
     public Variable(int length, boolean isRow, int index, int maxIndex){
         this.start = null;
@@ -23,6 +24,7 @@ public class Variable {
         this.isRow = isRow;
         this.index = index;
         constraints = new ArrayList<Constraint>();
+        rowSum = new ArrayList<Integer>();
         legalValues = new TreeSet<Integer>();
         for (int i=0; i<maxIndex; i++){
             legalValues.add(i);
@@ -32,6 +34,7 @@ public class Variable {
     public void addConstraint(Constraint constraint){
         constraints.add(constraint);
     }
+    public void addRowSum(List<Integer> rowSum) {this.rowSum = rowSum;}
 
     /**
      * Returns the value of the array in the domain.

@@ -78,6 +78,10 @@ public class CSPParser {
         }
     }
 
+    private void addRowSum(boolean isRow){
+
+    }
+
     private void addLastBlockConstraint(boolean isRow){
         int dim = isRow ? rowDim : colDim;
         int domainSize = isRow ? colDim : rowDim;
