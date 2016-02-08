@@ -88,6 +88,8 @@ public class Variable {
         return index;
     }
 
+    public List<Integer> getRowSum() {return rowSum;}
+
     public boolean isRow(){
         return isRow;
     }

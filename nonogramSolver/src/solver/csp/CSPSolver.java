@@ -162,4 +162,11 @@ public class CSPSolver {
         // TODO: maybe we want a deep copy?
         return variableList;
     }
+
+    public void restart() {
+        for (Variable var : variableList){
+            var.setStartValue(null);
+        }
+        unassigned = new ArrayList<Variable>(variableList);
+    }
 }

@@ -3,11 +3,10 @@ package solver.csp;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
- * Created by Zohar on 24/01/2016.
+ * Gets a file of a puzzle and creates Variables list accordingly.
  */
 public class CSPParser {
     private  List<List<Variable>> rowVariables;
@@ -24,6 +23,11 @@ public class CSPParser {
         //Add Order Constraint to the variables
         addOrderConstraint(true);
         addOrderConstraint(false);
+
+
+        //Add rowSum attribute
+        addRowSum(true);
+        addRowSum(false);
 
         //Add Last Block Constraint to the variables
         //addLastBlockConstraint(true);
@@ -79,6 +83,35 @@ public class CSPParser {
     }
 
     private void addRowSum(boolean isRow){
+        final Map<Integer, Integer> rowMap = new HashMap<Integer, Integer>();
+        List<Integer> rowSum = new ArrayList<Integer>();
+        int dim = isRow ? rowDim : colDim;
+        int otherDim = isRow ? colDim : rowDim;
+        List<List<Variable>> variableList = isRow ? rowVariables : colVariables;
+        List<List<Variable>> otherVariableList = isRow ? colVariables : rowVariables;
+        for (int i = 0; i< dim; i++){
+            List<Variable> currRow = variableList.get(i);
+            int sum = 0;
+            for (Variable var : currRow){
+                sum += var.getLength();
+            }
+            rowMap.put(i,sum);
+            rowSum.add(i);
+        }
+        Collections.sort(rowSum, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return rowMap.get(o2) - rowMap.get(o1);
+            }
+        });
+
+        for (int i=0; i<otherDim; i++) {
+            List<Variable> currRow = otherVariableList.get(i);
+            for (Variable var : currRow) {
+                var.addRowSum(rowSum);
+            }
+        }
+
 
     }
 

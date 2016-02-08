@@ -4,10 +4,14 @@ import javafx.application.Application;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -61,9 +65,12 @@ public class MainWindow extends Application {
         primaryStage.setWidth(800);
         primaryStage.setHeight(500);
         grid = new Grid(10, 10);
+        VBox root2 = new VBox();
         GridPane root = new GridPane();
         root.addRow(0, grid);
         root.setVgap(10);
+
+
 
         Pane buttons = new HBox();
         valueHeuristics = new ChoiceBox<ValueHeuristicsEnum>();
@@ -108,10 +115,19 @@ public class MainWindow extends Application {
         buttons.getChildren().addAll(valueHeuristics, variableHeuristics, btn, running);
         root.addRow(1,buttons);
 
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root2, 300, 250);
 
         primaryStage.setTitle("Nonogram CSP Solver");
         primaryStage.setScene(scene);
+
+        ScrollPane s1 = new ScrollPane();
+        s1.setPannable(true);
+        s1.setPrefSize(800, 800);
+        s1.setContent(root);
+
+        root2.getChildren().add(s1);
+
+
         primaryStage.show();
     }
 
