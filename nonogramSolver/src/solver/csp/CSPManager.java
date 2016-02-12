@@ -26,6 +26,14 @@ public class CSPManager extends Task<Void>{
         running = false;
     }
 
+    public CSPManager(File file, Grid grid){
+        this.grid = grid;
+        CSPParser parser = new CSPParser(file.getAbsolutePath());
+        this.grid.setSize(parser.getColumns(), parser.getRows());
+        this.grid.setHint(parser.getColumnHints(), parser.getRowHints());
+
+    }
+
     public void display(List<Variable> variables){
         Color[][] colors = new Color[grid.getColumns()][grid.getRows()];
         for (int i = 0; i < grid.getColumns(); i++){
@@ -69,17 +77,18 @@ public class CSPManager extends Task<Void>{
         running = true;
     }
 
+
     @Override
     protected Void call() throws Exception {
         try {
-            while (true) {
+            //while (true) {
                 if (this.solver.backtracking(true)) {
                     System.out.println("Success!");
                 }
                 display(this.solver.getVariables());
                 System.out.println("done");
-                this.solver.restart();
-            }
+                //this.solver.restart();
+            //}
         } catch (Throwable e) {
             e.printStackTrace();
         }

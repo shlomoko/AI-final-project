@@ -4,14 +4,11 @@ import javafx.application.Application;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -27,6 +24,8 @@ import java.io.File;
 public class MainWindow extends Application {
     Grid grid;
     CSPManager manager;
+    String filePath;
+    Thread managerThread;
     ChoiceBox<ValueHeuristicsEnum> valueHeuristics;
     ChoiceBox<VariableHeuristicsEnum> variableHeuristics;
 
@@ -47,7 +46,9 @@ public class MainWindow extends Application {
     private enum VariableHeuristicsEnum {
         DEGREE("Degree"),
         MRV("Minumum Remaining Value"),
-        LENGTH("Longest Block");
+        LENGTH("Longest Block"),
+        MAX_SUM("Max Sum"),
+        MAX_SUM_AND_LENGTH("Longest Block and Max Sum");
 
         private String label;
 
@@ -69,8 +70,7 @@ public class MainWindow extends Application {
         GridPane root = new GridPane();
         root.addRow(0, grid);
         root.setVgap(10);
-
-
+        final FileChooser fileChooser = new FileChooser();
 
         Pane buttons = new HBox();
         valueHeuristics = new ChoiceBox<ValueHeuristicsEnum>();
@@ -83,21 +83,14 @@ public class MainWindow extends Application {
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                FileChooser fileChooser = new FileChooser();
                 fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
                 fileChooser.setTitle("Open Resource File");
-                File file = fileChooser.showOpenDialog(primaryStage);
-                if (file != null) {
-                    VariableHeuristic varHeur = getChosenVariableHeuristic();
-                    ValueHeuristic valueHeur = getChosenValueHeurisitic();
-                    if (valueHeur == null || varHeur == null) {
-                        alert(primaryStage, "Invalid heuristic chosen");
-                    } else {
-                        manager = new CSPManager(file, grid, varHeur, valueHeur);
-                        new Thread(manager).start();
-
-                    }
+                File gameFile = fileChooser.showOpenDialog(primaryStage);
+                filePath = gameFile.getAbsolutePath();
+                if (gameFile != null){
+                    manager = new CSPManager(gameFile, grid);
                 }
+
             }
         });
         Button running = new Button("Running?");
@@ -112,7 +105,28 @@ public class MainWindow extends Application {
                 }
             }
         });
-        buttons.getChildren().addAll(valueHeuristics, variableHeuristics, btn, running);
+        Button start = new Button("Start");
+        start.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                if (filePath != null) {
+                    File file = new File(filePath);
+                    VariableHeuristic varHeur = getChosenVariableHeuristic();
+                    ValueHeuristic valueHeur = getChosenValueHeurisitic();
+                    if (valueHeur == null || varHeur == null) {
+                        alert(primaryStage, "Invalid heuristic chosen");
+                    } else {
+                        manager = new CSPManager(file, grid, varHeur, valueHeur);
+                        managerThread = new Thread(manager);
+                        managerThread.start();
+                    }
+                }
+
+
+            }
+        });
+
+        buttons.getChildren().addAll(valueHeuristics, variableHeuristics, btn, running, start);
         root.addRow(1,buttons);
 
         Scene scene = new Scene(root2, 300, 250);
@@ -151,6 +165,10 @@ public class MainWindow extends Application {
                 return new MinimumRemainingValues();
             case LENGTH:
                 return new BlockLengthHeuristic();
+            case MAX_SUM:
+                return new MaxSumVariableHeuristic();
+            case MAX_SUM_AND_LENGTH:
+                return new BlockLengthAndMaxSumHeuristic();
         }
         return null;
     }
