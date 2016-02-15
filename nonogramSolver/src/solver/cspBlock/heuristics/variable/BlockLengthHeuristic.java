@@ -1,6 +1,7 @@
-package solver.csp.heuristics;
+package solver.cspBlock.heuristics.variable;
 
-import solver.csp.Variable;
+import solver.cspBlock.Variable;
+import solver.cspBlock.heuristics.variable.VariableHeuristic;
 
 import java.util.List;
 

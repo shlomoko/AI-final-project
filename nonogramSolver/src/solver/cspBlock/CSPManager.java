@@ -1,9 +1,9 @@
-package solver.csp;
+package solver.cspBlock;
 
 import javafx.concurrent.Task;
 import javafx.scene.paint.Color;
-import solver.csp.heuristics.ValueHeuristic;
-import solver.csp.heuristics.VariableHeuristic;
+import solver.cspBlock.heuristics.value.ValueHeuristic;
+import solver.cspBlock.heuristics.variable.VariableHeuristic;
 import solver.gui.Grid;
 
 import java.io.File;

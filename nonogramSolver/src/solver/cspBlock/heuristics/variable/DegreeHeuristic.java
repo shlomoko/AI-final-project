@@ -1,11 +1,11 @@
-package solver.csp.heuristics;
+package solver.cspBlock.heuristics.variable;
 
-import solver.csp.Constraint;
-import solver.csp.Variable;
+import solver.cspBlock.Variable;
+import solver.cspBlock.heuristics.variable.VariableHeuristic;
 
 import java.util.List;
 
-public class DegreeHeuristic implements  VariableHeuristic{
+public class DegreeHeuristic implements VariableHeuristic {
     public Variable select(List<Variable> Potentials){
         Variable theChosenOne = null;
         for(Variable var : Potentials) {

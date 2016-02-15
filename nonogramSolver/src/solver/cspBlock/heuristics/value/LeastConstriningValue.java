@@ -1,8 +1,8 @@
-package solver.csp.heuristics;
+package solver.cspBlock.heuristics.value;
 
-import solver.csp.CSPSolver;
-import solver.csp.Constraint;
-import solver.csp.Variable;
+import solver.cspBlock.constraints.Constraint;
+import solver.cspBlock.Variable;
+import solver.cspBlock.heuristics.value.ValueHeuristic;
 
 import java.util.*;
 

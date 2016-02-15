@@ -1,6 +1,7 @@
-package solver.csp;
+package solver.cspBlock.constraints;
 
-import java.util.ArrayList;
+import solver.cspBlock.Variable;
+
 import java.util.List;
 
 /**

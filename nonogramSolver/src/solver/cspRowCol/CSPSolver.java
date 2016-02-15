@@ -1,7 +1,10 @@
-package solver.csp;
+package solver.cspRowCol;
 
-import solver.csp.heuristics.ValueHeuristic;
-import solver.csp.heuristics.VariableHeuristic;
+import solver.cspBlock.CSPManager;
+import solver.cspBlock.constraints.Constraint;
+import solver.cspBlock.Variable;
+import solver.cspBlock.heuristics.value.ValueHeuristic;
+import solver.cspBlock.heuristics.variable.VariableHeuristic;
 
 import java.util.*;
 

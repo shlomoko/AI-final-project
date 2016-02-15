@@ -1,4 +1,9 @@
-package solver.csp;
+package solver.cspRowCol;
+
+import solver.cspBlock.constraints.Constraint;
+import solver.cspBlock.constraints.IntersectConstraint;
+import solver.cspBlock.constraints.LastBlockConstraint;
+import solver.cspBlock.constraints.OrderConstraint;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -143,28 +148,15 @@ public class CSPParser {
                     colHints = new int[colDim][];
                 }else if (line.equals("[Row clues]")){
                     for (int i = 0; i< rowDim; i++){
-                        String[] rowNumbers = file.readLine().split(",");
-                        rowHints[i] = new int[rowNumbers.length];
-                        rowVariables.add(new ArrayList<Variable>());
-                        for (int j=0; j<rowNumbers.length; j++){
-                            int value = Integer.parseInt(rowNumbers[j]);
-                            Variable var = new Variable(value,true, i, colDim - value + 1);
-                            rowHints[i][j] = value;
-                            rowVariables.get(i).add(var);
-                            variables.add(var);
+                        String rowNumbers = file.readLine();
+                        Variable var = new Variable(rowNumbers,true, i);
+                        variables.add(var);
                         }
-                    }
                 }else if(line.equals("[Column clues]")){
                     for (int i = 0; i< colDim; i++){
-                        String[] colNumbers = file.readLine().split(",");
-                        colHints[i] = new int[colNumbers.length];
-                        colVariables.add(new ArrayList<Variable>());
-                        for (int j=0; j<colNumbers.length; j++){
-                            int value = Integer.parseInt(colNumbers[j]);
-                            Variable var = new Variable(value,false, i, rowDim - value + 1);
-                            colHints[i][j] = value;
-                            colVariables.get(i).add(var);
-                            variables.add(var);
+                        String colNumbers = file.readLine();
+                        Variable var = new Variable(colNumbers,false, i);
+                        variables.add(var);
                         }
                     }
                 }else if (line.equals("[Solution]")){

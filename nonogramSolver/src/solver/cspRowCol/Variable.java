@@ -1,4 +1,6 @@
-package solver.csp;
+package solver.cspRowCol;
+
+import solver.cspBlock.constraints.Constraint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +20,7 @@ public class Variable {
     private List<Constraint> constraints;
     private List<Integer> rowSum;
 
-    public Variable(int length, boolean isRow, int index, int maxIndex){
+    public Variable(int length, boolean isRow, int index){
         this.start = null;
         this.length = length;
         this.isRow = isRow;

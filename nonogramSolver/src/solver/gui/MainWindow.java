@@ -13,8 +13,10 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import solver.csp.CSPManager;
-import solver.csp.heuristics.*;
+import solver.cspBlock.CSPManager;
+import solver.cspBlock.heuristics.value.LeastConstriningValue;
+import solver.cspBlock.heuristics.variable.*;
+import solver.cspBlock.heuristics.value.ValueHeuristic;
 
 import java.io.File;
 

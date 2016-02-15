@@ -1,11 +1,13 @@
-package solver.csp.heuristics;
+package solver.cspBlock.heuristics.variable;
 
-import solver.csp.Variable;
+import solver.cspBlock.Variable;
+import solver.cspBlock.heuristics.variable.DegreeHeuristic;
+import solver.cspBlock.heuristics.variable.VariableHeuristic;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class MinimumRemainingValues implements  VariableHeuristic{
+public class MinimumRemainingValues implements VariableHeuristic {
     DegreeHeuristic deg;
 
     public MinimumRemainingValues(){
