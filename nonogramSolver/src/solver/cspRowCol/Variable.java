@@ -12,44 +12,24 @@ import java.util.TreeSet;
  * Created by Zohar on 24/01/2016.
  */
 public class Variable {
-    private Integer start;
+    private List<Integer> blocks;
     private int length;
     private boolean isRow;
     private int index;
-    private Set<Integer> legalValues; // The possible indexes of start.
+    private Set<List<Integer>> legalValues; // The possible indexes of start.
     private List<Constraint> constraints;
-    private List<Integer> rowSum;
 
-    public Variable(int length, boolean isRow, int index){
-        this.start = null;
-        this.length = length;
+    public Variable(List<Integer> blocks, boolean isRow, int index, int length){
+        this.blocks = blocks;
         this.isRow = isRow;
         this.index = index;
+        this.length = length;
         constraints = new ArrayList<Constraint>();
-        rowSum = new ArrayList<Integer>();
-        legalValues = new TreeSet<Integer>();
-        for (int i=0; i<maxIndex; i++){
-            legalValues.add(i);
-        }
+        legalValues = new TreeSet<List<Integer>>();
     }
 
     public void addConstraint(Constraint constraint){
         constraints.add(constraint);
-    }
-    public void addRowSum(List<Integer> rowSum) {this.rowSum = rowSum;}
-
-    /**
-     * Returns the value of the array in the domain.
-     * In our case, this is just a number. In fact - just the start location
-     * of the block
-     * @return the value of the variable - the start location.
-     */
-    public Integer getStartValue(){
-        return start;
-    }
-
-    public void setStartValue(Integer startValue) {
-        this.start = startValue;
     }
 
     public Set<Integer> getLegalValues(){

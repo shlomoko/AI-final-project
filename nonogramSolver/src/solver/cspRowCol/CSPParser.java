@@ -148,17 +148,27 @@ public class CSPParser {
                     colHints = new int[colDim][];
                 }else if (line.equals("[Row clues]")){
                     for (int i = 0; i< rowDim; i++){
-                        String rowNumbers = file.readLine();
-                        Variable var = new Variable(rowNumbers,true, i);
+                        String[] rowNumbers = file.readLine().split(",");
+                        List<Integer> numbers = new ArrayList<Integer>();
+                        for (String number : rowNumbers) {
+                            numbers.add( Integer.parseInt(number));
+                        }
+
+                        Variable var = new Variable(numbers,true, i, colDim);
                         variables.add(var);
                         }
                 }else if(line.equals("[Column clues]")){
                     for (int i = 0; i< colDim; i++){
-                        String colNumbers = file.readLine();
-                        Variable var = new Variable(colNumbers,false, i);
+                        String[] colNumbers = file.readLine().split(",");
+                        List<Integer> numbers = new ArrayList<Integer>();
+                        for (String number : colNumbers) {
+                            numbers.add( Integer.parseInt(number));
+                        }
+
+                        Variable var = new Variable(numbers,false, i, rowDim);
                         variables.add(var);
                         }
-                    }
+
                 }else if (line.equals("[Solution]")){
                     file.close();
                     return;
