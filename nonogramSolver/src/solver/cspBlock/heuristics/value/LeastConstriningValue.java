@@ -1,8 +1,9 @@
 package solver.cspBlock.heuristics.value;
 
-import solver.cspBlock.constraints.Constraint;
-import solver.cspBlock.Variable;
-import solver.cspBlock.heuristics.value.ValueHeuristic;
+import solver.Constraint;
+import solver.ValueHeuristic;
+import solver.Variable;
+import solver.cspBlock.BlockVariable;
 
 import java.util.*;
 
@@ -10,21 +11,21 @@ import java.util.*;
  * Created by Shlomo on 26/01/2016.
  */
 public class LeastConstriningValue implements ValueHeuristic {
-    public List<Integer> order (Variable variable){
+    public List<Object> order (Variable blockVariable){
         //constraints = variable.getConstraints();
-        if (variable.getStartValue() != null){
+        if (blockVariable.getValue() != null){
             throw new RuntimeException("Variable must be null upon valueHeuristic");
         }
         Set<Variable> varList = new HashSet<Variable>();
-        for (Constraint constr: variable.getConstraints()){
+        for (Constraint constr: blockVariable.getConstraints()){
             varList.addAll(constr.getAffectedVariables());
         }
-        final Map<Integer, Integer> valuesConstraining = new TreeMap<Integer, Integer>();
-        for (int val : variable.getLegalValues()){
-            variable.setStartValue(val);
+        final Map<Object, Integer> valuesConstraining = new HashMap<Object, Integer>();
+        for (Object val : blockVariable.getLegalValues()){
+            blockVariable.setValue(val);
             int legalValues = 0;
             for (Variable varNeighbor: varList){
-                for (Integer valueNeighbor: varNeighbor.getLegalValues()){
+                for (Object valueNeighbor: varNeighbor.getLegalValues()){
                     if (varNeighbor.isLegalValue(valueNeighbor)){
                         legalValues++;
                     }
@@ -32,11 +33,11 @@ public class LeastConstriningValue implements ValueHeuristic {
             }
             valuesConstraining.put(val, legalValues);
         }
-        variable.setStartValue(null);
-        ArrayList<Integer> values = new ArrayList<Integer>(variable.getLegalValues());
-        Collections.sort(values, new Comparator<Integer>() {
+        blockVariable.setValue(null);
+        ArrayList<Object> values = new ArrayList<Object>(blockVariable.getLegalValues());
+        Collections.sort(values, new Comparator<Object>() {
             @Override
-            public int compare(Integer o1, Integer o2) {
+            public int compare(Object o1, Object o2) {
                 return valuesConstraining.get(o1) - valuesConstraining.get(o2);
             }
         });

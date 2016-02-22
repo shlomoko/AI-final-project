@@ -1,19 +1,20 @@
 package solver.cspBlock.heuristics.variable;
 
-import solver.cspBlock.Variable;
-import solver.cspBlock.heuristics.variable.VariableHeuristic;
+import solver.Variable;
+import solver.VariableHeuristic;
+import solver.cspBlock.BlockVariable;
 
 import java.util.*;
 
-//TODO zohar
 public class MaxSumVariableHeuristic implements VariableHeuristic {
     @Override
     public Variable select(List<Variable> unassigned) {
         Map<Integer,Integer> rowSums = new HashMap<Integer, Integer>();
         Map<Integer,Integer> colSums = new HashMap<Integer, Integer>();
-        Map<Integer,List<Variable>> rowVariables = new HashMap<Integer, List<Variable>>();
-        Map<Integer,List<Variable>> colVariables = new HashMap<Integer, List<Variable>>();
-        for (Variable var : unassigned){
+        Map<Integer,List<BlockVariable>> rowVariables = new HashMap<Integer, List<BlockVariable>>();
+        Map<Integer,List<BlockVariable>> colVariables = new HashMap<Integer, List<BlockVariable>>();
+        for (Variable basicVar : unassigned){
+            BlockVariable var = (BlockVariable) basicVar;
             int index = var.getIndex();
             if(var.isRow()){
                 if(rowSums.containsKey(index)){
@@ -53,27 +54,27 @@ public class MaxSumVariableHeuristic implements VariableHeuristic {
             }
         }
 
-        Map<Integer, List<Variable>>  maxMap = maxColValue > maxRowValue? colVariables : rowVariables;
+        Map<Integer, List<BlockVariable>>  maxMap = maxColValue > maxRowValue? colVariables : rowVariables;
         int maxIndex = maxColValue > maxRowValue ? maxColIndex : maxRowIndex;
-        List<Variable> maxList = maxMap.get(maxIndex);
+        List<BlockVariable> maxList = maxMap.get(maxIndex);
 
-        Variable maxVariable = Collections.max(maxList, new Comparator<Variable>() {
+        BlockVariable maxBlockVariable = Collections.max(maxList, new Comparator<BlockVariable>() {
             @Override
-            public int compare(Variable o1, Variable o2) {
+            public int compare(BlockVariable o1, BlockVariable o2) {
                 return o1.getLength() - o2.getLength();
             }
         });
 
-        return maxVariable;
+        return maxBlockVariable;
     }
 
-    private void upadateMap(Map<Integer, List<Variable>> varList, int index, Variable var){
+    private void upadateMap(Map<Integer, List<BlockVariable>> varList, int index, BlockVariable var){
         if(varList.containsKey(index)){
-            List<Variable> list = varList.get(index);
+            List<BlockVariable> list = varList.get(index);
             list.add(var);
             varList.put(index, list);
         }else{
-            List<Variable> list = new ArrayList<Variable>();
+            List<BlockVariable> list = new ArrayList<BlockVariable>();
             list.add(var);
             varList.put(index, list);
         }

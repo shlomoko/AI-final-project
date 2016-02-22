@@ -1,7 +1,8 @@
 package solver.cspBlock.constraints;
 
-import solver.cspBlock.Variable;
-import solver.cspBlock.constraints.Constraint;
+import solver.Variable;
+import solver.cspBlock.BlockVariable;
+import solver.Constraint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,18 +11,18 @@ import java.util.List;
  * Created by Zohar on 24/01/2016.
  */
 public class OrderConstraint implements Constraint {
-    Variable firstVar;
-    Variable secondVar;
+    BlockVariable firstVar;
+    BlockVariable secondVar;
 
-    public OrderConstraint(Variable firstVar, Variable secondVar) {
+    public OrderConstraint(BlockVariable firstVar, BlockVariable secondVar) {
         this.firstVar = firstVar;
         this.secondVar = secondVar;
     }
 
     @Override
     public boolean isViolated() {
-        return !(firstVar.getStartValue() == null || secondVar.getStartValue() == null) &&
-                !(firstVar.getStartValue() + firstVar.getLength() < secondVar.getStartValue());
+        return !(((Integer) firstVar.getValue()) == null || ((Integer) secondVar.getValue()) == null) &&
+                !(((Integer) firstVar.getValue()) + firstVar.getLength() < ((Integer) secondVar.getValue()));
     }
 
     public List<Variable> getAffectedVariables(){

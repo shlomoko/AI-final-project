@@ -13,10 +13,13 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import solver.cspBlock.CSPManager;
+import solver.Manager;
+import solver.VariableHeuristic;
+import solver.cspBlock.BlockManager;
 import solver.cspBlock.heuristics.value.LeastConstriningValue;
 import solver.cspBlock.heuristics.variable.*;
-import solver.cspBlock.heuristics.value.ValueHeuristic;
+import solver.ValueHeuristic;
+import solver.cspRowCol.RowColManager;
 
 import java.io.File;
 
@@ -25,11 +28,27 @@ import java.io.File;
  */
 public class MainWindow extends Application {
     Grid grid;
-    CSPManager manager;
+    Manager manager;
     String filePath;
     Thread managerThread;
     ChoiceBox<ValueHeuristicsEnum> valueHeuristics;
     ChoiceBox<VariableHeuristicsEnum> variableHeuristics;
+    ChoiceBox<ModelEnum> models;
+
+    private enum ModelEnum {
+        BLOCK("Block"),
+        ROWCOL("Row-Column");
+
+        private String label;
+
+        ModelEnum(String label) {
+            this.label = label;
+        }
+
+        public String toString() {
+            return label;
+        }
+    }
 
     private enum ValueHeuristicsEnum {
         LCV("Least Constraining Value");
@@ -81,6 +100,9 @@ public class MainWindow extends Application {
         variableHeuristics = new ChoiceBox<VariableHeuristicsEnum>();
         variableHeuristics.getItems().setAll(VariableHeuristicsEnum.values());
         variableHeuristics.setValue(VariableHeuristicsEnum.DEGREE);
+        models = new ChoiceBox<ModelEnum>();
+        models.getItems().setAll(ModelEnum.values());
+        models.setValue(ModelEnum.BLOCK);
         Button btn = new Button("Load File");
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -90,7 +112,7 @@ public class MainWindow extends Application {
                 File gameFile = fileChooser.showOpenDialog(primaryStage);
                 filePath = gameFile.getAbsolutePath();
                 if (gameFile != null){
-                    manager = new CSPManager(gameFile, grid);
+                    manager = getManager(gameFile);
                 }
 
             }
@@ -118,7 +140,7 @@ public class MainWindow extends Application {
                     if (valueHeur == null || varHeur == null) {
                         alert(primaryStage, "Invalid heuristic chosen");
                     } else {
-                        manager = new CSPManager(file, grid, varHeur, valueHeur);
+                        manager = getManager(file, varHeur, valueHeur);
                         managerThread = new Thread(manager);
                         managerThread.start();
                     }
@@ -128,7 +150,7 @@ public class MainWindow extends Application {
             }
         });
 
-        buttons.getChildren().addAll(valueHeuristics, variableHeuristics, btn, running, start);
+        buttons.getChildren().addAll(valueHeuristics, variableHeuristics, models, btn, running, start);
         root.addRow(1,buttons);
 
         Scene scene = new Scene(root2, 300, 250);
@@ -179,6 +201,26 @@ public class MainWindow extends Application {
         switch (valueHeuristics.getValue()){
             case LCV:
                 return new LeastConstriningValue();
+        }
+        return null;
+    }
+
+    public Manager getManager(File file) {
+        switch (models.getValue()){
+            case BLOCK:
+                return new BlockManager(file, grid);
+            case ROWCOL:
+                return new RowColManager(file, grid);
+        }
+        return null;
+    }
+
+    public Manager getManager(File file, VariableHeuristic varHeur, ValueHeuristic valHeur) {
+        switch (models.getValue()){
+            case BLOCK:
+                return new BlockManager(file, grid, varHeur, valHeur);
+            case ROWCOL:
+                return new RowColManager(file, grid, varHeur, valHeur);
         }
         return null;
     }

@@ -1,8 +1,8 @@
 package solver.cspBlock.heuristics.variable;
 
-import solver.cspBlock.Variable;
-import solver.cspBlock.heuristics.variable.DegreeHeuristic;
-import solver.cspBlock.heuristics.variable.VariableHeuristic;
+import solver.Variable;
+import solver.VariableHeuristic;
+import solver.cspBlock.BlockVariable;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,19 +14,19 @@ public class MinimumRemainingValues implements VariableHeuristic {
         deg = new DegreeHeuristic();
     }
 
-    public  Variable select(List<Variable> Vars){
+    public Variable select(List<Variable> Vars){
         Variable minVar = null;
         List<Variable> tie = new LinkedList<Variable>();
-        for (Variable variable : Vars) {
+        for (Variable blockVariable : Vars) {
             if (minVar == null){
-                minVar = variable;
+                minVar = blockVariable;
                 tie.add(minVar);
             } else {
-                if (variable.getLegalValues().size() == minVar.getLegalValues().size()) {
-                    tie.add(variable);
+                if (blockVariable.getLegalValues().size() == minVar.getLegalValues().size()) {
+                    tie.add(blockVariable);
                 }
-                if (variable.getLegalValues().size() < minVar.getLegalValues().size()) {
-                    minVar = variable;
+                if (blockVariable.getLegalValues().size() < minVar.getLegalValues().size()) {
+                    minVar = blockVariable;
                     tie.clear();
                     tie.add(minVar);
                 }

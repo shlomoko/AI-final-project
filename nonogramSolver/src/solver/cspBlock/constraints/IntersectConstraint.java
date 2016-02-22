@@ -1,7 +1,8 @@
 package solver.cspBlock.constraints;
 
-import solver.cspBlock.Variable;
-import solver.cspBlock.constraints.Constraint;
+import solver.Variable;
+import solver.cspBlock.BlockVariable;
+import solver.Constraint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +11,8 @@ import java.util.List;
  * Intersection constraint - check if a cell has a specific color
  */
 public class IntersectConstraint implements Constraint {
-    List<Variable> rowBlocks;
-    List<Variable> columnBlocks;
+    List<BlockVariable> rowBlocks;
+    List<BlockVariable> columnBlocks;
     Integer row;
     Integer column;
 
@@ -23,7 +24,7 @@ public class IntersectConstraint implements Constraint {
      * @param rowBlocks the blocks in the specified row
      * @param columnBlocks the columns in the specified columns
      */
-    public IntersectConstraint(int row, int column, List<Variable> rowBlocks, List<Variable> columnBlocks){
+    public IntersectConstraint(int row, int column, List<BlockVariable> rowBlocks, List<BlockVariable> columnBlocks){
         this.rowBlocks = rowBlocks;
         this.columnBlocks = columnBlocks;
         this.row = row;
@@ -32,12 +33,12 @@ public class IntersectConstraint implements Constraint {
 
     // Binary search won't work - we have null value
     // Return the last block before the row, or null if all blocks are after
-    private Variable _searchBlocks(List<Variable> block, int num){
+    private BlockVariable _searchBlocks(List<BlockVariable> block, int num){
         if (block.size() == 0){
             return null;
         }
         for (int i = 0; i < block.size(); i++){
-            if (block.get(i).getStartValue() != null && block.get(i).getStartValue() > num){
+            if (block.get(i).getValue() != null && (Integer) block.get(i).getValue() > num){
                 // We passed the relevant value
                 if (i < 1)
                     return null;
@@ -47,17 +48,17 @@ public class IntersectConstraint implements Constraint {
         return block.get(block.size()-1); //If not find - get last
     }
 
-    private boolean _isMarked(Variable block, Integer cell){
-        return (block != null) && (block.getStartValue() + block.getLength() > cell);
+    private boolean _isMarked(BlockVariable block, Integer cell){
+        return (block != null) && ((Integer) block.getValue() + block.getLength() > cell);
     }
 
     @Override
     public boolean isViolated() {
-        Variable rowCandidate = _searchBlocks(rowBlocks, column);
-        Variable columnCandidate = _searchBlocks(columnBlocks, row);
+        BlockVariable rowCandidate = _searchBlocks(rowBlocks, column);
+        BlockVariable columnCandidate = _searchBlocks(columnBlocks, row);
         // There is a block - but we don't know where it starts
-        if ((rowCandidate != null && rowCandidate.getStartValue() == null) ||
-                (columnCandidate != null && columnCandidate.getStartValue() == null)){
+        if ((rowCandidate != null && rowCandidate.getValue() == null) ||
+                (columnCandidate != null && columnCandidate.getValue() == null)){
             return false;
         }
         boolean isRowMarked = _isMarked(rowCandidate, column);

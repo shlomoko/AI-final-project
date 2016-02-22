@@ -1,6 +1,8 @@
 package solver.cspBlock.heuristics.variable;
 
-import solver.cspBlock.Variable;
+import solver.Variable;
+import solver.VariableHeuristic;
+import solver.cspBlock.BlockVariable;
 
 import java.util.List;
 
@@ -12,8 +14,8 @@ public class BlockLengthAndMaxSumHeuristic implements VariableHeuristic {
     public Variable select(List<Variable> unassigned) {
         VariableHeuristic blockLengthHeuristic = new BlockLengthHeuristic();
         VariableHeuristic MaxSumHeuristic = new MaxSumVariableHeuristic();
-        Variable var1 = blockLengthHeuristic.select(unassigned);
-        Variable var2 = MaxSumHeuristic.select(unassigned);
+        BlockVariable var1 = (BlockVariable)blockLengthHeuristic.select(unassigned);
+        BlockVariable var2 = (BlockVariable)MaxSumHeuristic.select(unassigned);
         return var1.getLength() > var2.getLength() ? var1 : var2;
     }
 }

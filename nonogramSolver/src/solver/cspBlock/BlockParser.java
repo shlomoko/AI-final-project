@@ -1,6 +1,7 @@
 package solver.cspBlock;
 
-import solver.cspBlock.constraints.Constraint;
+import solver.Constraint;
+import solver.Variable;
 import solver.cspBlock.constraints.IntersectConstraint;
 import solver.cspBlock.constraints.LastBlockConstraint;
 import solver.cspBlock.constraints.OrderConstraint;
@@ -13,17 +14,17 @@ import java.util.*;
 /**
  * Gets a file of a puzzle and creates Variables list accordingly.
  */
-public class CSPParser {
-    private  List<List<Variable>> rowVariables;
-    private  List<List<Variable>> colVariables;
-    private List<Variable> variables;
+public class BlockParser {
+    private  List<List<BlockVariable>> rowVariables;
+    private  List<List<BlockVariable>> colVariables;
+    private List<BlockVariable> blockVariables;
     int rowDim;
     int colDim;
     int[][] rowHints;
     int[][] colHints;
 
 
-    public CSPParser(String fileName){
+    public BlockParser(String fileName){
         this.readFile(fileName);
         //Add Order Constraint to the variables
         addOrderConstraint(true);
@@ -41,13 +42,13 @@ public class CSPParser {
         //Add Intersect Constraint to the variables
         for(int i=0; i<rowDim; i++){
             for (int j=0; j<colDim; j++){
-                List<Variable> currRow = rowVariables.get(i);
-                List<Variable> currCol = colVariables.get(j);
+                List<BlockVariable> currRow = rowVariables.get(i);
+                List<BlockVariable> currCol = colVariables.get(j);
                 Constraint constraint = new IntersectConstraint(i, j, currRow, currCol);
-                for(Variable rowVar : currRow){
+                for(BlockVariable rowVar : currRow){
                     rowVar.addConstraint(constraint);
                 }
-                for(Variable colVar :currCol){
+                for(BlockVariable colVar :currCol){
                     colVar.addConstraint(constraint);
                 }
             }
@@ -55,7 +56,7 @@ public class CSPParser {
     }
 
     public List<Variable> getVariables(){
-        return variables;
+        return new LinkedList<Variable>(blockVariables);
     }
 
     public int getRows(){
@@ -76,9 +77,9 @@ public class CSPParser {
 
     private void addOrderConstraint(boolean isRow){
         int dim = isRow ? rowDim : colDim;
-        List<List<Variable>> variableList = isRow ? rowVariables : colVariables;
+        List<List<BlockVariable>> variableList = isRow ? rowVariables : colVariables;
         for (int i = 0; i< dim; i++){
-            List<Variable> currRow = variableList.get(i);
+            List<BlockVariable> currRow = variableList.get(i);
             for(int j=0; j<currRow.size()-1; j++){
                 Constraint constraint = new OrderConstraint(currRow.get(j), currRow.get(j+1));
                 currRow.get(j).addConstraint(constraint);
@@ -92,12 +93,12 @@ public class CSPParser {
         List<Integer> rowSum = new ArrayList<Integer>();
         int dim = isRow ? rowDim : colDim;
         int otherDim = isRow ? colDim : rowDim;
-        List<List<Variable>> variableList = isRow ? rowVariables : colVariables;
-        List<List<Variable>> otherVariableList = isRow ? colVariables : rowVariables;
+        List<List<BlockVariable>> variableList = isRow ? rowVariables : colVariables;
+        List<List<BlockVariable>> otherVariableList = isRow ? colVariables : rowVariables;
         for (int i = 0; i< dim; i++){
-            List<Variable> currRow = variableList.get(i);
+            List<BlockVariable> currRow = variableList.get(i);
             int sum = 0;
-            for (Variable var : currRow){
+            for (BlockVariable var : currRow){
                 sum += var.getLength();
             }
             rowMap.put(i,sum);
@@ -111,8 +112,8 @@ public class CSPParser {
         });
 
         for (int i=0; i<otherDim; i++) {
-            List<Variable> currRow = otherVariableList.get(i);
-            for (Variable var : currRow) {
+            List<BlockVariable> currRow = otherVariableList.get(i);
+            for (BlockVariable var : currRow) {
                 var.addRowSum(rowSum);
             }
         }
@@ -123,18 +124,18 @@ public class CSPParser {
     private void addLastBlockConstraint(boolean isRow){
         int dim = isRow ? rowDim : colDim;
         int domainSize = isRow ? colDim : rowDim;
-        List<List<Variable>> variableList = isRow ? rowVariables : colVariables;
+        List<List<BlockVariable>> variableList = isRow ? rowVariables : colVariables;
         for (int i = 0; i< dim; i++){
-            List<Variable> currRow = variableList.get(i);
+            List<BlockVariable> currRow = variableList.get(i);
             Constraint constraint = new LastBlockConstraint(currRow.get(currRow.size()-1), domainSize);
             currRow.get(currRow.size()-1).addConstraint(constraint);
         }
     }
 
     private void readFile(String fileName){
-        this.rowVariables = new ArrayList<List<Variable>>();
-        this.colVariables = new ArrayList<List<Variable>>();
-        this.variables = new ArrayList<Variable>();
+        this.rowVariables = new ArrayList<List<BlockVariable>>();
+        this.colVariables = new ArrayList<List<BlockVariable>>();
+        this.blockVariables = new ArrayList<BlockVariable>();
         this.rowDim = 0;
         this.colDim = 0;
         try {
@@ -150,26 +151,26 @@ public class CSPParser {
                     for (int i = 0; i< rowDim; i++){
                         String[] rowNumbers = file.readLine().split(",");
                         rowHints[i] = new int[rowNumbers.length];
-                        rowVariables.add(new ArrayList<Variable>());
+                        rowVariables.add(new ArrayList<BlockVariable>());
                         for (int j=0; j<rowNumbers.length; j++){
                             int value = Integer.parseInt(rowNumbers[j]);
-                            Variable var = new Variable(value,true, i, colDim - value + 1);
+                            BlockVariable var = new BlockVariable(value,true, i, colDim - value + 1);
                             rowHints[i][j] = value;
                             rowVariables.get(i).add(var);
-                            variables.add(var);
+                            blockVariables.add(var);
                         }
                     }
                 }else if(line.equals("[Column clues]")){
                     for (int i = 0; i< colDim; i++){
                         String[] colNumbers = file.readLine().split(",");
                         colHints[i] = new int[colNumbers.length];
-                        colVariables.add(new ArrayList<Variable>());
+                        colVariables.add(new ArrayList<BlockVariable>());
                         for (int j=0; j<colNumbers.length; j++){
                             int value = Integer.parseInt(colNumbers[j]);
-                            Variable var = new Variable(value,false, i, rowDim - value + 1);
+                            BlockVariable var = new BlockVariable(value,false, i, rowDim - value + 1);
                             colHints[i][j] = value;
                             colVariables.get(i).add(var);
-                            variables.add(var);
+                            blockVariables.add(var);
                         }
                     }
                 }else if (line.equals("[Solution]")){

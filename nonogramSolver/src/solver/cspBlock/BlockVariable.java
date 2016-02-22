@@ -1,17 +1,15 @@
 package solver.cspBlock;
 
-import solver.cspBlock.constraints.Constraint;
+import solver.Constraint;
+import solver.Variable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 
 /**
  * Created by Zohar on 24/01/2016.
  */
-public class Variable {
+public class BlockVariable implements Variable{
     private Integer start;
     private int length;
     private boolean isRow;
@@ -20,7 +18,7 @@ public class Variable {
     private List<Constraint> constraints;
     private List<Integer> rowSum;
 
-    public Variable(int length, boolean isRow, int index, int maxIndex){
+    public BlockVariable(int length, boolean isRow, int index, int maxIndex){
         this.start = null;
         this.length = length;
         this.isRow = isRow;
@@ -44,22 +42,22 @@ public class Variable {
      * of the block
      * @return the value of the variable - the start location.
      */
-    public Integer getStartValue(){
+    public Object getValue(){
         return start;
     }
 
-    public void setStartValue(Integer startValue) {
-        this.start = startValue;
+    public void setValue(Object startValue) {
+        this.start = (Integer)startValue;
     }
 
-    public Set<Integer> getLegalValues(){
+    public Set<Object> getLegalValues(){
         // If assigned - the only legal value is the assigned one
         if (start != null){
-            Set<Integer> values = new TreeSet<Integer>();
+            Set<Object> values = new HashSet<Object>();
             values.add(start);
             return values;
         }
-        return legalValues;
+        return new HashSet<Object>(legalValues);
     }
 
     public List<Constraint> getConstraints(){
@@ -74,12 +72,12 @@ public class Variable {
         return sum;
     }
 
-    public void removeLegalValue(Integer value){
-        legalValues.remove(value);
+    public void removeLegalValue(Object value){
+        legalValues.remove((Integer) value);
     }
 
-    public void addLegalValue(Integer value){
-        legalValues.add(value);
+    public void addLegalValue(Object value){
+        legalValues.add((Integer) value);
     }
 
     public int getLength(){
@@ -96,16 +94,16 @@ public class Variable {
         return isRow;
     }
 
-    public boolean isLegalValue(Integer value){
-        Integer oldValue = getStartValue();
-        setStartValue(value);
+    public boolean isLegalValue(Object value){
+        Object oldValue = getValue();
+        setValue(value);
         for (Constraint constr : getConstraints()){
             if (constr.isViolated()){
-                setStartValue(oldValue);
+                setValue(oldValue);
                 return false;
             }
         }
-        setStartValue(oldValue);
+        setValue(oldValue);
         return true;
     }
 

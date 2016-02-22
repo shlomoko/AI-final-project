@@ -1,16 +1,17 @@
 package solver.cspBlock.constraints;
 
-import solver.cspBlock.Variable;
-import solver.cspBlock.constraints.Constraint;
+import solver.Variable;
+import solver.cspBlock.BlockVariable;
+import solver.Constraint;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LastBlockConstraint implements Constraint {
-    Variable block;
+    BlockVariable block;
     int lastIndex;
 
-    public LastBlockConstraint(Variable block, int lastIndex){
+    public LastBlockConstraint(BlockVariable block, int lastIndex){
         this.block = block;
         this.lastIndex = lastIndex;
     }
@@ -18,7 +19,7 @@ public class LastBlockConstraint implements Constraint {
     @Override
     public boolean isViolated() {
         // Constaint is violated if block isn't null and extends beyond row/column
-        return !(block.getStartValue() == null) && (block.getStartValue() + block.getLength() > lastIndex);
+        return !(block.getValue() == null) && (((Integer)block.getValue()) + block.getLength() > lastIndex);
     }
 
     @Override

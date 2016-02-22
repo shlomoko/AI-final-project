@@ -1,10 +1,7 @@
-package solver.cspRowCol;
+package solver;
 
-import solver.cspBlock.CSPManager;
-import solver.cspBlock.constraints.Constraint;
-import solver.cspBlock.Variable;
-import solver.cspBlock.heuristics.value.ValueHeuristic;
-import solver.cspBlock.heuristics.variable.VariableHeuristic;
+import solver.*;
+import solver.cspRowCol.RowColVariable;
 
 import java.util.*;
 
@@ -26,69 +23,69 @@ public class CSPSolver {
     List<Variable> unassigned;
     VariableHeuristic variableHeuristic; // Which variable to choose next
     ValueHeuristic valueHeuristic; // At what order we assign the values to the variable (startValues)
-    CSPManager manager;
+    Manager manager;
 
     //constructor
-    public CSPSolver(List<Variable> variables, VariableHeuristic variableHeur, ValueHeuristic valueHeur, CSPManager manager){
+    public CSPSolver(List<Variable> variables, VariableHeuristic variableHeur, ValueHeuristic valueHeur, Manager manager){
         this.manager = manager;
         this.variableHeuristic = variableHeur;
         this.valueHeuristic = valueHeur;
         this.variableList = variables;
-        this.unassigned = new ArrayList<Variable>(variables); // A shallow copy - all items point to the original
+        this.unassigned = new ArrayList<Variable>(variableList); // A shallow copy - all items point to the original
     }
 
-    private void _undoRemoveInconsistentValues(Map<Variable, List<Integer>> map){
+    private void _undoRemoveInconsistentValues(Map<Variable, List<Object>> map){
         if (map == null) return;
-        for (Map.Entry<Variable, List<Integer>> neighbor : map.entrySet()){
-            for (Integer value : neighbor.getValue()){
+        for (Map.Entry<Variable, List<Object>> neighbor : map.entrySet()){
+            for (Object value : neighbor.getValue()){
                 neighbor.getKey().addLegalValue(value);
             }
         }
     }
 
-    private boolean _couldSatisfyConstraint(Constraint cons, Queue<Variable> remainingVariables){
-        if (remainingVariables.size() == 0)
+    private boolean _couldSatisfyConstraint(Constraint cons, Queue<Variable> remainingRowColVariables){
+        if (remainingRowColVariables.size() == 0)
             return !cons.isViolated(); // The constraint is not violated!
         //Copy, so we don't ruin;
-        remainingVariables = new LinkedList<Variable>(remainingVariables);
-        Variable next_var = remainingVariables.remove();
-        Integer originalValue = next_var.getStartValue();
-        for (Integer value : next_var.getLegalValues()){
-            next_var.setStartValue(value);
-            if (_couldSatisfyConstraint(cons, remainingVariables)) {
+        remainingRowColVariables = new LinkedList<Variable>(remainingRowColVariables);
+        Variable next_var = remainingRowColVariables.remove();
+        Object originalValue = next_var.getValue();
+        for (Object value : next_var.getLegalValues()){
+            next_var.setValue(value);
+            if (_couldSatisfyConstraint(cons, remainingRowColVariables)) {
                 // Return to the original value
-                next_var.setStartValue(originalValue);
+                next_var.setValue(originalValue);
                 return true;
             }
         }
         // Return to the original value
-        next_var.setStartValue(originalValue);
+        next_var.setValue(originalValue);
         return false;
     }
 
     // For every value in the domain, checks if there is any assignment s.t. the constraint would not be violated.
-    private List<Integer> _removeInconsistentValue(Variable source, Constraint cons){
+    private List<Object> _removeInconsistentValue(Variable source, Constraint cons){
         Queue<Variable> others = new LinkedList<Variable>(cons.getAffectedVariables());
         others.remove(source);
-        Integer previousX = source.getStartValue();
-        List<Integer> removed = new LinkedList<Integer>();
-        List<Integer> legalValues = new LinkedList<Integer>(source.getLegalValues());
-        for (Integer x : legalValues){
+        Object previousX = source.getValue();
+        List<Object> removed = new LinkedList<Object>();
+        List<Object> legalValues = new LinkedList<Object>(source.getLegalValues());
+        for (Object x : legalValues){
             // Note that there is not harm in resetting the variables - legal values is the only value if only
             // such value possible.
-            source.setStartValue(x);
+            source.setValue(x);
             if (!_couldSatisfyConstraint(cons, others)){
                 removed.add(x);
                 source.removeLegalValue(x);
             }
         }
-        source.setStartValue(previousX);
+        source.setValue(previousX);
         return removed;
     }
 
     // Returns a map of removed values, if detected inconsistency, returns null.
-    private Map<Variable, List<Integer>> generalizedArcConsistency(){
-        Map<Variable, List<Integer>> inconsistentValues = new HashMap<Variable, List<Integer>>();
+    private Map<Variable, List<Object>> generalizedArcConsistency(){
+        Map<Variable, List<Object>> inconsistentValues = new HashMap<Variable, List<Object>>();
         Queue<Arc> arcs = new LinkedList<Arc>();
         // TODO: should arc consistency be only on changed nodes? (Then we get as variable the relevant variable?)
         for (Variable first : variableList){
@@ -100,7 +97,7 @@ public class CSPSolver {
             Arc arc = arcs.remove();
 
             // Go over different instantiation and check if the relevant constraint is violated
-            List<Integer> values = _removeInconsistentValue(arc.source, arc.constaint);
+            List<Object> values = _removeInconsistentValue(arc.source, arc.constaint);
 
             // arc.source changed, so we need to add all others:
             if (values.size() > 0) {
@@ -137,13 +134,13 @@ public class CSPSolver {
         Variable to_assign = variableHeuristic.select(unassigned);
         System.out.println(to_assign);
         unassigned.remove(to_assign);
-        for (int num : valueHeuristic.order(to_assign)){
+        for (Object num : valueHeuristic.order(to_assign)){
             // No need to check if variable is consistent - arc consistency is taking care of it
             if (to_assign.isLegalValue(num)) {
-                to_assign.setStartValue(num);
+                to_assign.setValue(num);
                 manager.display(getVariables());
                 // We assigned - we need to check for consistency
-                Map<Variable, List<Integer>> inconsistentValues = null;
+                Map<Variable, List<Object>> inconsistentValues = null;
                 if (arcConsistent)
                     inconsistentValues = generalizedArcConsistency();
                 // Arc consistency found legal assignments
@@ -156,19 +153,18 @@ public class CSPSolver {
                 _undoRemoveInconsistentValues(inconsistentValues);
             }
         }
-        to_assign.setStartValue(null);
+        to_assign.setValue(null);
         unassigned.add(to_assign);
         return false;
     }
 
-    List<Variable> getVariables(){
-        // TODO: maybe we want a deep copy?
+    public List<Variable> getVariables(){
         return variableList;
     }
 
     public void restart() {
         for (Variable var : variableList){
-            var.setStartValue(null);
+            var.setValue(null);
         }
         unassigned = new ArrayList<Variable>(variableList);
     }

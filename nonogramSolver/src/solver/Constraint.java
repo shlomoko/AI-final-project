@@ -1,6 +1,6 @@
-package solver.cspBlock.constraints;
+package solver;
 
-import solver.cspBlock.Variable;
+import solver.cspBlock.BlockVariable;
 
 import java.util.List;
 
