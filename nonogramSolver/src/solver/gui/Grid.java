@@ -2,7 +2,6 @@ package solver.gui;
 
 
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -10,7 +9,6 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 
 public class Grid extends GridPane {
     private int width;

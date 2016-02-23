@@ -13,13 +13,19 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import solver.Manager;
-import solver.VariableHeuristic;
-import solver.cspBlock.BlockManager;
-import solver.cspBlock.heuristics.value.LeastConstriningValue;
-import solver.cspBlock.heuristics.variable.*;
-import solver.ValueHeuristic;
-import solver.cspRowCol.RowColManager;
+import solver.csp.Manager;
+import solver.csp.handlers.ArcConsistency;
+import solver.csp.heuristics.variable.VariableHeuristic;
+import solver.csp.cspBlock.heuristics.variable.BlockLengthAndMaxSumHeuristic;
+import solver.csp.cspBlock.heuristics.variable.BlockLengthHeuristic;
+import solver.csp.cspBlock.heuristics.variable.MaxSumVariableHeuristic;
+import solver.csp.heuristics.variable.DegreeHeuristic;
+import solver.csp.heuristics.variable.MinimumRemainingValues;
+import solver.csp.cspBlock.BlockManager;
+import solver.csp.heuristics.value.LeastConstriningValue;
+import solver.csp.heuristics.value.ValueHeuristic;
+import solver.csp.cspRowCol.RowColManager;
+import solver.measure.Counters;
 
 import java.io.File;
 
@@ -117,15 +123,12 @@ public class MainWindow extends Application {
 
             }
         });
-        Button running = new Button("Running?");
-        running.setOnAction(new EventHandler<ActionEvent>() {
+        Button stop = new Button("Stop");
+        stop.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 if (manager != null) {
-                    alert(primaryStage, "" + manager.getState());
-                    if (manager.getState() == Worker.State.FAILED) {
-                        manager.exceptionProperty().getValue().printStackTrace();
-                    }
+                    manager.askToStop();
                 }
             }
         });
@@ -145,12 +148,10 @@ public class MainWindow extends Application {
                         managerThread.start();
                     }
                 }
-
-
             }
         });
 
-        buttons.getChildren().addAll(valueHeuristics, variableHeuristics, models, btn, running, start);
+        buttons.getChildren().addAll(valueHeuristics, variableHeuristics, models, btn, start, stop);
         root.addRow(1,buttons);
 
         Scene scene = new Scene(root2, 300, 250);
@@ -218,9 +219,9 @@ public class MainWindow extends Application {
     public Manager getManager(File file, VariableHeuristic varHeur, ValueHeuristic valHeur) {
         switch (models.getValue()){
             case BLOCK:
-                return new BlockManager(file, grid, varHeur, valHeur);
+                return new BlockManager(file, grid, varHeur, valHeur, new ArcConsistency());
             case ROWCOL:
-                return new RowColManager(file, grid, varHeur, valHeur);
+                return new RowColManager(file, grid, varHeur, valHeur, new ArcConsistency());
         }
         return null;
     }
