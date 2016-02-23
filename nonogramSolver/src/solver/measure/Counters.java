@@ -63,6 +63,10 @@ public class Counters {
         return ticksAmount.keySet();
     }
 
+    public synchronized void reset(){
+        _instance = new Counters();
+    }
+
     public static Counters getInstance(){
         return _instance;
     }

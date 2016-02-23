@@ -33,6 +33,7 @@ import java.io.File;
  * Created by tmrlvi on 07/02/2016.
  */
 public class MainWindow extends Application {
+    Counters counters = Counters.getInstance();
     Grid grid;
     Manager manager;
     String filePath;
@@ -136,6 +137,7 @@ public class MainWindow extends Application {
         start.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                counters.reset();
                 if (filePath != null) {
                     File file = new File(filePath);
                     VariableHeuristic varHeur = getChosenVariableHeuristic();
