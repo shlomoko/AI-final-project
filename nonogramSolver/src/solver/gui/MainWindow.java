@@ -1,7 +1,6 @@
 package solver.gui;
 
 import javafx.application.Application;
-import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -14,6 +13,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import solver.csp.Manager;
+import solver.csp.cspRowCol.heuristics.variable.RowColLengthAndMaxSumHeuristic;
+import solver.csp.heuristics.value.MostConstrainingValue;
+import solver.csp.cspRowCol.heuristics.variable.RowColLengthHeuristic;
+import solver.csp.cspRowCol.heuristics.variable.RowColMaxSumVariableHeuristic;
 import solver.csp.handlers.ArcConsistency;
 import solver.csp.heuristics.variable.VariableHeuristic;
 import solver.csp.cspBlock.heuristics.variable.BlockLengthAndMaxSumHeuristic;
@@ -58,7 +61,8 @@ public class MainWindow extends Application {
     }
 
     private enum ValueHeuristicsEnum {
-        LCV("Least Constraining Value");
+        LCV("Least Constraining Value"),
+        MCV("Most Constraining Value");
 
         private String label;
 
@@ -117,7 +121,10 @@ public class MainWindow extends Application {
                 fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
                 fileChooser.setTitle("Open Resource File");
                 File gameFile = fileChooser.showOpenDialog(primaryStage);
-                filePath = gameFile.getAbsolutePath();
+                if(gameFile != null){
+                    filePath = gameFile.getAbsolutePath();
+                    primaryStage.setTitle("Nonogram CSP Solver - "+ gameFile.getName());
+                }
                 if (gameFile != null){
                     manager = getManager(gameFile);
                 }
@@ -140,7 +147,8 @@ public class MainWindow extends Application {
                 counters.reset();
                 if (filePath != null) {
                     File file = new File(filePath);
-                    VariableHeuristic varHeur = getChosenVariableHeuristic();
+                    Boolean isBlockManager  = models.getValue()== ModelEnum.BLOCK;
+                    VariableHeuristic varHeur = getChosenVariableHeuristic(isBlockManager);
                     ValueHeuristic valueHeur = getChosenValueHeurisitic();
                     if (valueHeur == null || varHeur == null) {
                         alert(primaryStage, "Invalid heuristic chosen");
@@ -184,18 +192,33 @@ public class MainWindow extends Application {
     }
 
 
-    public VariableHeuristic getChosenVariableHeuristic() {
-        switch (variableHeuristics.getValue()){
-            case DEGREE:
-                return new DegreeHeuristic();
-            case MRV:
-                return new MinimumRemainingValues();
-            case LENGTH:
-                return new BlockLengthHeuristic();
-            case MAX_SUM:
-                return new MaxSumVariableHeuristic();
-            case MAX_SUM_AND_LENGTH:
-                return new BlockLengthAndMaxSumHeuristic();
+    public VariableHeuristic getChosenVariableHeuristic(boolean isBlockManager) {
+        if(isBlockManager) {
+            switch (variableHeuristics.getValue()) {
+                case DEGREE:
+                    return new DegreeHeuristic();
+                case MRV:
+                    return new MinimumRemainingValues();
+                case LENGTH:
+                    return new BlockLengthHeuristic();
+                case MAX_SUM:
+                    return new MaxSumVariableHeuristic();
+                case MAX_SUM_AND_LENGTH:
+                    return new BlockLengthAndMaxSumHeuristic();
+            }
+        }else{
+            switch (variableHeuristics.getValue()){
+                case DEGREE:
+                    return new DegreeHeuristic();
+                case MRV:
+                    return new MinimumRemainingValues();
+                case LENGTH:
+                    return new RowColLengthHeuristic();
+                case MAX_SUM:
+                    return new RowColMaxSumVariableHeuristic();
+                case MAX_SUM_AND_LENGTH:
+                    return new RowColLengthAndMaxSumHeuristic();
+            }
         }
         return null;
     }
@@ -204,6 +227,8 @@ public class MainWindow extends Application {
         switch (valueHeuristics.getValue()){
             case LCV:
                 return new LeastConstriningValue();
+            case MCV:
+                return new MostConstrainingValue();
         }
         return null;
     }

@@ -24,6 +24,8 @@ public class RowColVariable extends Variable {
     private int length;
     private boolean isRow;
     private int index;
+    private int blocksSum;
+    private int maxBlock;
     private List<Edges> value;
     private Set<List<Edges>> legalValues; // The possible indexes of start.
     private List<Constraint> constraints;
@@ -37,7 +39,24 @@ public class RowColVariable extends Variable {
         constraints = new ArrayList<Constraint>();
         legalValues = new HashSet<List<Edges>>();
         populateLegalValues(0, new ArrayList<Edges>());
+        setAttributes();
     }
+
+    private void setAttributes(){
+        int sum = 0;
+        int maxBlock = 0;
+        for(int num : this.getBlocks()){
+            sum += num;
+            maxBlock = Math.max(maxBlock,num);
+        }
+        this.maxBlock = maxBlock;
+        this.blocksSum = sum;
+    }
+
+    public int getBlocksSum(){return blocksSum;}
+
+    public int getMaxBlock(){return maxBlock;}
+
     private void populateLegalValues(int index, List<Edges> list){
         int location;
         if(index == 0){
@@ -97,6 +116,8 @@ public class RowColVariable extends Variable {
     public int getIndex(){
         return index;
     }
+
+    public List<Integer> getBlocks() {return blocks;}
 
     public boolean isRow(){
         return isRow;
