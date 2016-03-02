@@ -13,13 +13,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import solver.csp.Manager;
-import solver.csp.cspRowCol.heuristics.variable.RowColLengthAndMaxSumHeuristic;
 import solver.csp.heuristics.value.MostConstrainingValue;
 import solver.csp.cspRowCol.heuristics.variable.RowColLengthHeuristic;
 import solver.csp.cspRowCol.heuristics.variable.RowColMaxSumVariableHeuristic;
 import solver.csp.handlers.ArcConsistency;
 import solver.csp.heuristics.variable.VariableHeuristic;
-import solver.csp.cspBlock.heuristics.variable.BlockLengthAndMaxSumHeuristic;
 import solver.csp.cspBlock.heuristics.variable.BlockLengthHeuristic;
 import solver.csp.cspBlock.heuristics.variable.MaxSumVariableHeuristic;
 import solver.csp.heuristics.variable.DegreeHeuristic;
@@ -79,8 +77,7 @@ public class MainWindow extends Application {
         DEGREE("Degree"),
         MRV("Minumum Remaining Value"),
         LENGTH("Longest Block"),
-        MAX_SUM("Max Sum"),
-        MAX_SUM_AND_LENGTH("Longest Block and Max Sum");
+        MAX_SUM("Max Sum");
 
         private String label;
 
@@ -203,8 +200,6 @@ public class MainWindow extends Application {
                     return new BlockLengthHeuristic();
                 case MAX_SUM:
                     return new MaxSumVariableHeuristic();
-                case MAX_SUM_AND_LENGTH:
-                    return new BlockLengthAndMaxSumHeuristic();
             }
         }else{
             switch (variableHeuristics.getValue()){
@@ -216,8 +211,6 @@ public class MainWindow extends Application {
                     return new RowColLengthHeuristic();
                 case MAX_SUM:
                     return new RowColMaxSumVariableHeuristic();
-                case MAX_SUM_AND_LENGTH:
-                    return new RowColLengthAndMaxSumHeuristic();
             }
         }
         return null;

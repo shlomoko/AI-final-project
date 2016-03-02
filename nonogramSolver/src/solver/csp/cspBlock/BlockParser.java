@@ -3,7 +3,6 @@ package solver.csp.cspBlock;
 import solver.csp.Constraint;
 import solver.csp.Variable;
 import solver.csp.cspBlock.constraints.IntersectConstraint;
-import solver.csp.cspBlock.constraints.LastBlockConstraint;
 import solver.csp.cspBlock.constraints.OrderConstraint;
 
 import java.io.BufferedReader;
@@ -121,16 +120,6 @@ public class BlockParser {
 
     }
 
-    private void addLastBlockConstraint(boolean isRow){
-        int dim = isRow ? rowDim : colDim;
-        int domainSize = isRow ? colDim : rowDim;
-        List<List<BlockVariable>> variableList = isRow ? rowVariables : colVariables;
-        for (int i = 0; i< dim; i++){
-            List<BlockVariable> currRow = variableList.get(i);
-            Constraint constraint = new LastBlockConstraint(currRow.get(currRow.size()-1), domainSize);
-            currRow.get(currRow.size()-1).addConstraint(constraint);
-        }
-    }
 
     private void readFile(String fileName){
         this.rowVariables = new ArrayList<List<BlockVariable>>();
