@@ -14,7 +14,7 @@ import java.util.List;
 public class RowColLengthHeuristic implements VariableHeuristic{
     @Override
     public Variable select(List<? extends Variable> unassigned) {
-        int maxLength = 1;
+        int maxLength = 0;
         RowColVariable maxLenVar = null;
         for (Variable basicVar : unassigned){
             RowColVariable var = (RowColVariable)basicVar;

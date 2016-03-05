@@ -13,7 +13,7 @@ import java.util.*;
 public class LeastConstriningValue implements ValueHeuristic {
     public List<Object> order (Variable blockVariable){
         //constraints = variable.getConstraints();
-        if (blockVariable.getValue() != null){
+            if (blockVariable.getValue() != null){
             throw new RuntimeException("Variable must be null upon valueHeuristic");
         }
         Set<Variable> varList = new HashSet<Variable>();

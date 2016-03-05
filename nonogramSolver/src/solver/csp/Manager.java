@@ -78,7 +78,8 @@ public abstract class Manager implements Runnable {
             }
 
         } catch (Throwable e) {
-            report(e.getMessage());
+            e.printStackTrace();
+            report("Had an error:" + e.toString());
         }
     }
 

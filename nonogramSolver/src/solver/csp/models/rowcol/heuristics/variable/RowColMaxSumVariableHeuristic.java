@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Zohar on 26/02/2016.
  */
-@Default
+@Default(1)
 @LimitTo("RowColManager")
 public class RowColMaxSumVariableHeuristic implements VariableHeuristic {
     @Override

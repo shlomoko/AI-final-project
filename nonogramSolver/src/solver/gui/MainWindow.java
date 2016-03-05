@@ -248,12 +248,16 @@ public class MainWindow extends Application implements UserInterface {
         try {
             return (Manager) models.getValue().getDeclaredConstructor(args).newInstance(parser, this, varHeur, valHeur, handler);
         } catch (InstantiationException e) {
+            e.printStackTrace();
             return null;
         } catch (IllegalAccessException e) {
+            e.printStackTrace();
             return null;
         } catch (NoSuchMethodException e) {
+            e.printStackTrace();
             return null;
         } catch (InvocationTargetException e) {
+            e.printStackTrace();
             return null;
         }
     }
