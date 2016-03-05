@@ -2,6 +2,7 @@ package solver.csp;
 
 import solver.csp.heuristics.value.ValueHeuristic;
 import solver.csp.heuristics.variable.VariableHeuristic;
+import solver.gui.Counters;
 
 import java.util.*;
 
@@ -9,7 +10,7 @@ import java.util.*;
  * Solves the CSP at hand using ArcConsistency and backtracking.
  */
 public class CSPSolver {
-    List<Variable> variableList;
+    List<? extends Variable> variableList;
     List<Variable> unassigned;
     VariableHeuristic variableHeuristic; // Which variable to choose next
     ValueHeuristic valueHeuristic; // At what order we assign the values to the variable (startValues)
@@ -17,7 +18,7 @@ public class CSPSolver {
     Manager manager;
 
     //constructor
-    public CSPSolver(List<Variable> variables, VariableHeuristic variableHeur, ValueHeuristic valueHeur, ConstraintHandler handler, Manager manager){
+    public CSPSolver(List<? extends Variable> variables, VariableHeuristic variableHeur, ValueHeuristic valueHeur, ConstraintHandler handler, Manager manager){
         this.manager = manager;
         this.handler = handler;
         this.variableHeuristic = variableHeur;
@@ -28,8 +29,10 @@ public class CSPSolver {
 
 
     public boolean solve(){
+        manager.report("Starting solving");
         unassigned = new ArrayList<Variable>(variableList);
         if (handler.initialize(variableList)) {
+            manager.report("Starting backtracking");
             return backtracking();
         }
         return false;
@@ -44,15 +47,15 @@ public class CSPSolver {
         if (unassigned.size() == 0) return true;
         if (manager.isStopped()) return false;
         Variable to_assign = variableHeuristic.select(unassigned);
-        System.out.println(to_assign);
         unassigned.remove(to_assign);
         for (Object num : valueHeuristic.order(to_assign)){
             // No need to check if variable is consistent - arc consistency is taking care of it
             if (to_assign.isLegalValue(num)) {
                 to_assign.setValue(num);
-                manager.display(getVariables());
+                Counters.getInstance().addCount("Assignments", 1L   );
+                manager.display();
                 // We assigned - we need to check for consistency
-                Map<Variable, List<Object>> removedValues = handler.checkConstraints(to_assign);
+                Map<? extends Variable, List<Object>> removedValues = handler.checkConstraints(to_assign);
                 // Arc consistency found legal assignments
                 if (removedValues != null) {
                     // Recursively continue the enumeration
@@ -68,7 +71,7 @@ public class CSPSolver {
         return false;
     }
 
-    public List<Variable> getVariables(){
+    public List<? extends Variable> getVariables(){
         return variableList;
     }
 }

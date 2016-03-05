@@ -1,5 +1,6 @@
 package solver.csp.handlers;
 
+import solver.annotations.Default;
 import solver.csp.Constraint;
 import solver.csp.ConstraintHandler;
 import solver.csp.Manager;
@@ -10,24 +11,15 @@ import java.util.*;
 /**
  * Created by tmrlvi on 23/02/2016.
  */
+@Default
 public class ArcConsistency implements ConstraintHandler {
     private Manager manager = null;
-
-    private class Arc{
-        public Variable source;
-        public Constraint constaint;
-
-        public Arc(Variable source, Constraint constaint){
-            this.source = source;
-            this.constaint = constaint;
-        }
-    }
 
     public void setManager(Manager manager){
         this.manager = manager;
     }
 
-    private Map<Variable, List<Object>> generalizedArcConsistency(Queue<Arc> arcs){
+    private Map<Variable, List<Object>> generalizedArcConsistency(ArcQueue arcs){
         Map<Variable, List<Object>> inconsistentValues = new HashMap<Variable, List<Object>>();
 
         while (!arcs.isEmpty()){
@@ -36,7 +28,7 @@ public class ArcConsistency implements ConstraintHandler {
                 //TODO: should emit an exception?
                 return null;
             }
-            Arc arc = arcs.remove();
+            ArcQueue.Arc arc = arcs.remove();
 
             // Go over different instantiation and check if the relevant constraint is violated
             List<Object> values = _removeInconsistentValue(arc.source, arc.constaint);
@@ -59,7 +51,7 @@ public class ArcConsistency implements ConstraintHandler {
                 for (Constraint cons : arc.source.getConstraints())
                     for (Variable first : cons.getAffectedVariables())
                         if (first != arc.source)
-                            arcs.add(new Arc(first, cons));
+                            arcs.add(first, cons);
             }
         }
         return inconsistentValues;
@@ -86,6 +78,9 @@ public class ArcConsistency implements ConstraintHandler {
     }
 
     private boolean _couldSatisfyConstraint(Constraint cons, Queue<Variable> remainingRowColVariables){
+        if (manager != null && manager.isStopped()) {
+            return false;
+        }
         if (remainingRowColVariables.size() == 0)
             return !cons.isViolated(); // The constraint is not violated!
         //Copy, so we don't ruin;
@@ -106,31 +101,52 @@ public class ArcConsistency implements ConstraintHandler {
     }
 
     @Override
-    public boolean initialize(List<Variable> unassigned) {
-        Queue<Arc> arcs = new LinkedList<Arc>();
+    public boolean initialize(List<? extends Variable> unassigned) {
+        manager.report("Check global arc consistency");
+        ArcQueue arcs = new ArcQueue();
         for (Variable first : unassigned){
-            for (Constraint cons : first.getConstraints())
-                arcs.add(new Arc(first, cons));
+            for (Constraint cons : first.getConstraints()) {
+                arcs.add(first, cons);
+            }
         }
-        return generalizedArcConsistency(arcs) != null;
+        manager.report("Total arcs to check: " + arcs.size());
+        Map<Variable, List<Object>> values = generalizedArcConsistency(arcs);
+        if (values == null) {
+            manager.report("Arc consistency found inconsistent arc. Unsolveable.");
+        } else {
+            int sum = 0;
+            for (List<Object> lst : values.values()) sum += lst.size();
+            manager.report("Removed " + sum + " values from " + values.size() + " variables.");
+        }
+        return values != null;
     }
 
     @Override
-    public Map<Variable, List<Object>> checkConstraints(Variable var) {
+    public Map<? extends Variable, List<Object>> checkConstraints(Variable var) {
         // Returns a map of removed values, if detected inconsistency, returns null.
-
-        Queue<Arc> arcs = new LinkedList<Arc>();
+        HashSet<Variable> neighbors = new HashSet<Variable>();
+        ArcQueue arcs = new ArcQueue();
         for (Constraint constr : var.getConstraints()){
-            arcs.add(new Arc(var, constr));
+            arcs.add(var, constr);
+            for (Variable neighbor : constr.getAffectedVariables()){
+                if (neighbor != var){
+                    neighbors.add(neighbor);
+                }
+            }
+        }
+        for (Variable neighbor : neighbors){
+            for (Constraint constr : neighbor.getConstraints()){
+                arcs.add(neighbor, constr);
+            }
         }
 
         return generalizedArcConsistency(arcs);
     }
 
     @Override
-    public void restoreValue(Map<Variable, List<Object>> removedValues) {
+    public void restoreValue(Map<? extends Variable, List<Object>> removedValues) {
         if (removedValues == null) return;
-            for (Map.Entry<Variable, List<Object>> neighbor : removedValues.entrySet()){
+            for (Map.Entry<? extends Variable, List<Object>> neighbor : removedValues.entrySet()){
                 for (Object value : neighbor.getValue()){
                     neighbor.getKey().addLegalValue(value);
                 }

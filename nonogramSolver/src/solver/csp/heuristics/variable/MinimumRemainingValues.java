@@ -1,10 +1,12 @@
 package solver.csp.heuristics.variable;
 
+import solver.annotations.Default;
 import solver.csp.Variable;
 
 import java.util.LinkedList;
 import java.util.List;
 
+@Default
 public class MinimumRemainingValues implements VariableHeuristic {
     DegreeHeuristic deg;
 
@@ -12,7 +14,7 @@ public class MinimumRemainingValues implements VariableHeuristic {
         deg = new DegreeHeuristic();
     }
 
-    public Variable select(List<Variable> Vars){
+    public Variable select(List<? extends Variable> Vars){
         Variable minVar = null;
         List<Variable> tie = new LinkedList<Variable>();
         for (Variable blockVariable : Vars) {

@@ -1,116 +1,102 @@
 package solver.gui;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import solver.csp.ConstraintHandler;
 import solver.csp.Manager;
-import solver.csp.heuristics.value.MostConstrainingValue;
-import solver.csp.cspRowCol.heuristics.variable.RowColLengthHeuristic;
-import solver.csp.cspRowCol.heuristics.variable.RowColMaxSumVariableHeuristic;
+import solver.csp.NonogramParser;
 import solver.csp.handlers.ArcConsistency;
 import solver.csp.heuristics.variable.VariableHeuristic;
-import solver.csp.cspBlock.heuristics.variable.BlockLengthHeuristic;
-import solver.csp.cspBlock.heuristics.variable.MaxSumVariableHeuristic;
-import solver.csp.heuristics.variable.DegreeHeuristic;
-import solver.csp.heuristics.variable.MinimumRemainingValues;
-import solver.csp.cspBlock.BlockManager;
-import solver.csp.heuristics.value.LeastConstriningValue;
 import solver.csp.heuristics.value.ValueHeuristic;
-import solver.csp.cspRowCol.RowColManager;
-import solver.measure.Counters;
 
 import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Created by tmrlvi on 07/02/2016.
  */
-public class MainWindow extends Application {
+public class MainWindow extends Application implements UserInterface {
     Counters counters = Counters.getInstance();
     Grid grid;
+    TextArea console;
+    NonogramParser parser;
     Manager manager;
     String filePath;
     Thread managerThread;
-    ChoiceBox<ValueHeuristicsEnum> valueHeuristics;
-    ChoiceBox<VariableHeuristicsEnum> variableHeuristics;
-    ChoiceBox<ModelEnum> models;
+    Pane modelParameters;
+    ChoiceBox<Class> valueHeuristics;
+    ChoiceBox<Class> variableHeuristics;
+    ChoiceBox<Class> models;
+    private ChoiceBox<Class> handlers;
 
-    private enum ModelEnum {
-        BLOCK("Block"),
-        ROWCOL("Row-Column");
-
-        private String label;
-
-        ModelEnum(String label) {
-            this.label = label;
-        }
-
-        public String toString() {
-            return label;
-        }
+    @Override
+    public void display(Color[][] colors) {
+        grid.setColor(colors);
     }
 
-    private enum ValueHeuristicsEnum {
-        LCV("Least Constraining Value"),
-        MCV("Most Constraining Value");
-
-        private String label;
-
-        ValueHeuristicsEnum(String label) {
-            this.label = label;
-        }
-
-        public String toString() {
-            return label;
-        }
+    @Override
+    public void report(String message) {
+        console.appendText(message + "\n");
     }
 
-    private enum VariableHeuristicsEnum {
-        DEGREE("Degree"),
-        MRV("Minumum Remaining Value"),
-        LENGTH("Longest Block"),
-        MAX_SUM("Max Sum");
+    @Override
+    public boolean supportDynamicDisplay() {
+        return true;
+    }
 
-        private String label;
+    private class ClassStringConverter extends StringConverter<Class>{
 
-        VariableHeuristicsEnum(String label) {
-            this.label = label;
+        @Override
+        public String toString(Class cls) {
+            return cls.getSimpleName().replaceAll("([A-Z])", " $1");
         }
 
-        public String toString() {
-            return label;
+        @Override
+        public Class fromString(String clsName) {
+            try {
+                return Class.forName(clsName.replace(" ",""));
+            } catch (ClassNotFoundException e) {
+                return null;
+            }
         }
     }
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
+        parser = null;
         primaryStage.setWidth(800);
         primaryStage.setHeight(500);
         grid = new Grid(10, 10);
+        console = new TextArea();
+        console.setEditable(false);
+        Pane gridConsole = new HBox();
+        gridConsole.getChildren().addAll(grid, console);
         VBox root2 = new VBox();
         GridPane root = new GridPane();
-        root.addRow(0, grid);
-        root.setVgap(10);
+        root.addRow(1, gridConsole);
+        root.setVgap(20);
         final FileChooser fileChooser = new FileChooser();
+        final Chooser chooser = new Chooser();
+        final ClassStringConverter converter = new ClassStringConverter();
 
-        Pane buttons = new HBox();
-        valueHeuristics = new ChoiceBox<ValueHeuristicsEnum>();
-        valueHeuristics.getItems().setAll(ValueHeuristicsEnum.values());
-        valueHeuristics.setValue(ValueHeuristicsEnum.LCV);
-        variableHeuristics = new ChoiceBox<VariableHeuristicsEnum>();
-        variableHeuristics.getItems().setAll(VariableHeuristicsEnum.values());
-        variableHeuristics.setValue(VariableHeuristicsEnum.DEGREE);
-        models = new ChoiceBox<ModelEnum>();
-        models.getItems().setAll(ModelEnum.values());
-        models.setValue(ModelEnum.BLOCK);
+        Pane buttons = new VBox();
+        Pane controlButtons = new HBox();
+
+
+
         Button btn = new Button("Load File");
         btn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -118,16 +104,46 @@ public class MainWindow extends Application {
                 fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
                 fileChooser.setTitle("Open Resource File");
                 File gameFile = fileChooser.showOpenDialog(primaryStage);
-                if(gameFile != null){
+                if(gameFile != null) {
                     filePath = gameFile.getAbsolutePath();
-                    primaryStage.setTitle("Nonogram CSP Solver - "+ gameFile.getName());
+                    primaryStage.setTitle("Nonogram CSP Solver - " + gameFile.getName());
+                    try {
+                        parser = new NonogramParser(gameFile);
+                        grid.setSize(parser.getColAmount(), parser.getRowAmount());
+                        grid.setHint(parser.getColumnHints(), parser.getRowHints());
+                    } catch (IOException e) {
+                        alert(primaryStage, "Couldn't parse file. Is it a valid file?");
+                    }
                 }
-                if (gameFile != null){
-                    manager = getManager(gameFile);
-                }
-
             }
         });
+
+        modelParameters = new HBox();
+        models = new ChoiceBox<Class>();
+        models.setConverter(converter);
+        models.getItems().setAll(chooser.getModels());
+        models.valueProperty().addListener(new ChangeListener<Class>() {
+            @Override
+            public void changed(ObservableValue<? extends Class> observableValue, Class old, Class chosen) {
+                valueHeuristics = new ChoiceBox<Class>();
+                valueHeuristics.setConverter(converter);
+                valueHeuristics.getItems().setAll(chooser.getValueHeuristics(chosen));
+                valueHeuristics.setValue(chooser.getDefault(chooser.getValueHeuristics(chosen)));
+
+                variableHeuristics = new ChoiceBox<Class>();
+                variableHeuristics.setConverter(converter);
+                variableHeuristics.getItems().setAll(chooser.getVariableHeuristics(chosen));
+                variableHeuristics.setValue(chooser.getDefault(chooser.getVariableHeuristics(chosen)));
+
+                handlers = new ChoiceBox<Class>();
+                handlers.setConverter(converter);
+                handlers.getItems().setAll(chooser.getHandlers());
+                handlers.setValue(chooser.getDefault(chooser.getHandlers()));
+                modelParameters.getChildren().setAll(models, valueHeuristics, variableHeuristics, handlers);
+            }
+        });
+        models.setValue(chooser.getDefault(chooser.getModels()));
+
         Button stop = new Button("Stop");
         stop.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -142,24 +158,26 @@ public class MainWindow extends Application {
             @Override
             public void handle(ActionEvent actionEvent) {
                 counters.reset();
-                if (filePath != null) {
-                    File file = new File(filePath);
-                    Boolean isBlockManager  = models.getValue()== ModelEnum.BLOCK;
-                    VariableHeuristic varHeur = getChosenVariableHeuristic(isBlockManager);
+                if (parser != null) {
+                    VariableHeuristic varHeur = getChosenVariableHeuristic();
                     ValueHeuristic valueHeur = getChosenValueHeurisitic();
-                    if (valueHeur == null || varHeur == null) {
-                        alert(primaryStage, "Invalid heuristic chosen");
+                    ConstraintHandler handler = getChosenContraintHandler();
+                    if (valueHeur == null || varHeur == null || handler == null) {
+                        alert(primaryStage, "Invalid heuristic or constraint handler chosen");
                     } else {
-                        manager = getManager(file, varHeur, valueHeur);
+                        manager = getManager(parser, varHeur, valueHeur, handler);
                         managerThread = new Thread(manager);
                         managerThread.start();
                     }
+                } else {
+                    alert(primaryStage, "Choose a file first");
                 }
             }
         });
 
-        buttons.getChildren().addAll(valueHeuristics, variableHeuristics, models, btn, start, stop);
-        root.addRow(1,buttons);
+        controlButtons.getChildren().addAll(btn, start, stop);
+        buttons.getChildren().addAll(new Label("Controls:"), controlButtons, new Label("Parameters:"), modelParameters);
+        root.addRow(0,buttons);
 
         Scene scene = new Scene(root2, 300, 250);
 
@@ -178,72 +196,60 @@ public class MainWindow extends Application {
     }
 
     private void alert(Stage stage,String s) {
-        final Stage dialog = new Stage();
-        dialog.initModality(Modality.APPLICATION_MODAL);
-        dialog.initOwner(stage);
-        VBox dialogVbox = new VBox(20);
-        dialogVbox.getChildren().add(new Text("Error: " + s));
-        Scene dialogScene = new Scene(dialogVbox, 300, 200);
-        dialog.setScene(dialogScene);
-        dialog.show();
+        Dialogs.showErrorDialog(stage, s, "We had an error:", "Oh No!");
     }
 
 
-    public VariableHeuristic getChosenVariableHeuristic(boolean isBlockManager) {
-        if(isBlockManager) {
-            switch (variableHeuristics.getValue()) {
-                case DEGREE:
-                    return new DegreeHeuristic();
-                case MRV:
-                    return new MinimumRemainingValues();
-                case LENGTH:
-                    return new BlockLengthHeuristic();
-                case MAX_SUM:
-                    return new MaxSumVariableHeuristic();
-            }
-        }else{
-            switch (variableHeuristics.getValue()){
-                case DEGREE:
-                    return new DegreeHeuristic();
-                case MRV:
-                    return new MinimumRemainingValues();
-                case LENGTH:
-                    return new RowColLengthHeuristic();
-                case MAX_SUM:
-                    return new RowColMaxSumVariableHeuristic();
-            }
+    public VariableHeuristic getChosenVariableHeuristic()  {
+        try {
+            return (VariableHeuristic) variableHeuristics.getValue().newInstance();
+        } catch (InstantiationException e) {
+            return null;
+        } catch (IllegalAccessException e) {
+            return null;
         }
-        return null;
     }
 
     public ValueHeuristic getChosenValueHeurisitic() {
-        switch (valueHeuristics.getValue()){
-            case LCV:
-                return new LeastConstriningValue();
-            case MCV:
-                return new MostConstrainingValue();
+        try {
+            return (ValueHeuristic) valueHeuristics.getValue().newInstance();
+        } catch (InstantiationException e) {
+            return null;
+        } catch (IllegalAccessException e) {
+            return null;
         }
-        return null;
     }
 
-    public Manager getManager(File file) {
-        switch (models.getValue()){
-            case BLOCK:
-                return new BlockManager(file, grid);
-            case ROWCOL:
-                return new RowColManager(file, grid);
+
+    private ConstraintHandler getChosenContraintHandler() {
+        try {
+            return (ConstraintHandler) handlers.getValue().newInstance();
+        } catch (InstantiationException e) {
+            return null;
+        } catch (IllegalAccessException e) {
+            return null;
         }
-        return null;
     }
 
-    public Manager getManager(File file, VariableHeuristic varHeur, ValueHeuristic valHeur) {
-        switch (models.getValue()){
-            case BLOCK:
-                return new BlockManager(file, grid, varHeur, valHeur, new ArcConsistency());
-            case ROWCOL:
-                return new RowColManager(file, grid, varHeur, valHeur, new ArcConsistency());
+
+    public Manager getManager(NonogramParser parser, VariableHeuristic varHeur, ValueHeuristic valHeur, ConstraintHandler handler) {
+        Class[] args = new Class[5];
+        args[0] = NonogramParser.class;
+        args[1] = UserInterface.class;
+        args[2] = VariableHeuristic.class;
+        args[3] = ValueHeuristic.class;
+        args[4] = ConstraintHandler.class;
+        try {
+            return (Manager) models.getValue().getDeclaredConstructor(args).newInstance(parser, this, varHeur, valHeur, handler);
+        } catch (InstantiationException e) {
+            return null;
+        } catch (IllegalAccessException e) {
+            return null;
+        } catch (NoSuchMethodException e) {
+            return null;
+        } catch (InvocationTargetException e) {
+            return null;
         }
-        return null;
     }
 
     public static void main(String[] args) {

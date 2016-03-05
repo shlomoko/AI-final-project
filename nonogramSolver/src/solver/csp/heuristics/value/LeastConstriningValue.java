@@ -1,5 +1,6 @@
 package solver.csp.heuristics.value;
 
+import solver.annotations.Default;
 import solver.csp.Constraint;
 import solver.csp.Variable;
 
@@ -8,6 +9,7 @@ import java.util.*;
 /**
  * Created by Shlomo on 26/01/2016.
  */
+@Default
 public class LeastConstriningValue implements ValueHeuristic {
     public List<Object> order (Variable blockVariable){
         //constraints = variable.getConstraints();

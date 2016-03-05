@@ -26,7 +26,7 @@ public class ConstraintChecker implements ConstraintHandler {
     }
 
     @Override
-    public boolean initialize(List<Variable> unassigned) {
+    public boolean initialize(List<? extends Variable> unassigned) {
         // All constraints are not violated
         return true;
     }
@@ -41,5 +41,5 @@ public class ConstraintChecker implements ConstraintHandler {
     }
 
     @Override
-    public void restoreValue(Map<Variable, List<Object>> removedValues) {}
+    public void restoreValue(Map<? extends Variable, List<Object>> removedValues) {}
 }

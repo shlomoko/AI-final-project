@@ -1,6 +1,6 @@
 package solver.csp;
 
-import solver.measure.Counters;
+import solver.gui.Counters;
 
 import java.util.List;
 
@@ -11,8 +11,16 @@ public abstract class Constraint {
 
     public boolean isViolated(){
         Counters counters = Counters.getInstance();
+        Long varAmount = 0L;
+        Long varDomainAmount = 0L;
         counters.addCount("Constraints", 1L);
-        counters.addCount("Constraints times amount of variables", (long) getAffectedVariables().size());
+        for (Variable var : getAffectedVariables()){
+            varAmount++;
+            varDomainAmount += var.getLegalValues().size();
+        }
+        counters.addCount("Constraints times amount of variables", varAmount);
+        counters.addCount("Constraints times amount of variables times domain", varDomainAmount);
+
         return checkConstraintFails();
     }
 

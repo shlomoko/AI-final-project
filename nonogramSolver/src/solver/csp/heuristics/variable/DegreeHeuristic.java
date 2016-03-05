@@ -5,7 +5,7 @@ import solver.csp.Variable;
 import java.util.List;
 
 public class DegreeHeuristic implements VariableHeuristic {
-    public Variable select(List<Variable> Potentials){
+    public Variable select(List<? extends Variable> Potentials){
         Variable theChosenOne = null;
         for(Variable var : Potentials) {
             if (theChosenOne == null) {
