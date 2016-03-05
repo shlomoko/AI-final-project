@@ -11,6 +11,9 @@ import solver.csp.models.block.BlockManager;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by tmrlvi on 04/03/2016.
@@ -170,10 +173,10 @@ public class Console implements UserInterface {
     public void display(Color[][] colors) {
         for (int i = 0; i < colors.length; i++){
             for (int j = 0; j < colors[i].length; j++){
-                if (colors[i][j] == Color.GREEN) System.out.print("|");
-                else if (colors[i][j] == Color.RED) System.out.print("-");
-                else if (colors[i][j] == Color.BLACK) System.out.print("+");
-                else System.out.print(" ");
+                if (colors[j][i] == Color.GREEN) System.out.print("| ");
+                else if (colors[j][i] == Color.RED) System.out.print("- ");
+                else if (colors[j][i] == Color.BLACK) System.out.print("+ ");
+                else System.out.print("  ");
             }
             System.out.println();
         }

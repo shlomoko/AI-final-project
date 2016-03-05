@@ -11,14 +11,24 @@ import java.util.List;
 /**
  * Created by Zohar on 22/02/2016.
  */
-public abstract class Manager extends Task<Void> {
+public abstract class Manager implements Runnable {
     UserInterface ui;
     Integer rowAmount;
     Integer colAmount;
     CSPSolver solver;
     private boolean isRunning = false;
+    protected abstract void displayVariableState();
 
-    public abstract void display();
+    public void display(){
+        display(false);
+    }
+
+    public void display(boolean force){
+        if (ui.supportDynamicDisplay() || force){
+            displayVariableState();
+        }
+    }
+
     protected abstract List<? extends Variable> parserToVariable(NonogramParser parser);
 
     public Manager(NonogramParser parser, UserInterface ui, VariableHeuristic varHeur, ValueHeuristic valueHeur, ConstraintHandler handler){
@@ -49,8 +59,7 @@ public abstract class Manager extends Task<Void> {
         return ui;
     }
 
-    @Override
-    protected Void call() throws Exception {
+    public void run()  {
         try {
             isRunning = true;
             if (getSolver().solve()) {
@@ -58,7 +67,7 @@ public abstract class Manager extends Task<Void> {
             } else {
                 report("Didn't find solution");
             }
-            display();
+            display(true);
 
             Counters counters = Counters.getInstance();
             for (String key : counters.keySetCount()){
@@ -69,10 +78,8 @@ public abstract class Manager extends Task<Void> {
             }
 
         } catch (Throwable e) {
-            e.printStackTrace();
+            report(e.getMessage());
         }
-        isRunning = false;
-        return null;
     }
 
     public boolean isStopped() {

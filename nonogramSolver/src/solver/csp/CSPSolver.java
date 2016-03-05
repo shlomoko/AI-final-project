@@ -45,10 +45,10 @@ public class CSPSolver {
      */
     public boolean backtracking(){
         if (unassigned.size() == 0) return true;
-        if (manager.isStopped()) return false;
         Variable to_assign = variableHeuristic.select(unassigned);
         unassigned.remove(to_assign);
         for (Object num : valueHeuristic.order(to_assign)){
+            if (manager.isStopped()) return false;
             // No need to check if variable is consistent - arc consistency is taking care of it
             if (to_assign.isLegalValue(num)) {
                 to_assign.setValue(num);

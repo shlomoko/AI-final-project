@@ -150,6 +150,11 @@ public class MainWindow extends Application implements UserInterface {
             public void handle(ActionEvent actionEvent) {
                 if (manager != null) {
                     manager.askToStop();
+                    try {
+                        managerThread.join();
+                    } catch (InterruptedException e) {
+                        report("Thread didn't finish. Hope this turns to the best");
+                    }
                 }
             }
         });
@@ -157,6 +162,7 @@ public class MainWindow extends Application implements UserInterface {
         start.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                grid.reset();
                 counters.reset();
                 if (parser != null) {
                     VariableHeuristic varHeur = getChosenVariableHeuristic();

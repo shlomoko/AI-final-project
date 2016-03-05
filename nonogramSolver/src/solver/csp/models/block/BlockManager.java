@@ -119,7 +119,7 @@ public class BlockManager extends Manager {
     }
 
     @Override
-    public void display(){
+    public void displayVariableState(){
         Color[][] colors = new Color[getColAmount()][getRowAmount()];
         for (int i = 0; i < getColAmount(); i++){
             for (int j = 0; j < getRowAmount(); j++){

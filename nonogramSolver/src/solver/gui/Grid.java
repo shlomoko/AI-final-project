@@ -41,6 +41,10 @@ public class Grid extends GridPane {
         this.width = width;
         this.height = height;
 
+        reset();
+    }
+
+    public void reset(){
         rectangles = new Rectangle[width][height];
         for (int i = 0; i<width; i++) {
             for (int j = 0; j < height; j++) {
