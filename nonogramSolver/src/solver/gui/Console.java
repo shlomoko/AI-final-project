@@ -171,14 +171,16 @@ public class Console implements UserInterface {
 
     @Override
     public void display(Color[][] colors) {
-        for (int i = 0; i < colors.length; i++){
-            for (int j = 0; j < colors[i].length; j++){
-                if (colors[j][i] == Color.GREEN) System.out.print("| ");
-                else if (colors[j][i] == Color.RED) System.out.print("- ");
-                else if (colors[j][i] == Color.BLACK) System.out.print("+ ");
-                else System.out.print("  ");
+        if (colors.length > 0) {
+            for (int j = 0; j < colors[0].length; j++) {
+                for (int i = 0; i < colors.length; i++) {
+                    if (colors[i][j] == Color.GREEN) System.out.print("| ");
+                    else if (colors[i][j] == Color.RED) System.out.print("- ");
+                    else if (colors[i][j] == Color.BLACK) System.out.print("+ ");
+                    else System.out.print("  ");
+                }
+                System.out.println();
             }
-            System.out.println();
         }
     }
 
