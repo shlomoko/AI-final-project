@@ -5,14 +5,14 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import javafx.stage.*;
 import javafx.util.StringConverter;
 import solver.csp.ConstraintHandler;
 import solver.csp.Manager;
@@ -40,6 +40,7 @@ public class MainWindow extends Application implements UserInterface {
     ChoiceBox<Class> valueHeuristics;
     ChoiceBox<Class> variableHeuristics;
     ChoiceBox<Class> models;
+    CheckBox clearOnStart;
     private ChoiceBox<Class> handlers;
 
     @Override
@@ -76,9 +77,21 @@ public class MainWindow extends Application implements UserInterface {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                if (manager != null){
+                    manager.askToStop();
+                }
+            }
+        });
+
         parser = null;
-        primaryStage.setWidth(800);
-        primaryStage.setHeight(500);
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        primaryStage.setX(bounds.getMinX());
+        primaryStage.setY(bounds.getMinY());
+        primaryStage.setWidth(bounds.getWidth());
+        primaryStage.setHeight(bounds.getHeight());
         grid = new Grid(10, 10);
         console = new TextArea();
         console.setEditable(false);
@@ -92,8 +105,8 @@ public class MainWindow extends Application implements UserInterface {
         final Chooser chooser = new Chooser();
         final ClassStringConverter converter = new ClassStringConverter();
 
-        Pane buttons = new VBox();
-        Pane controlButtons = new HBox();
+        Pane buttons = new VBox(2);
+        Pane controlButtons = new HBox(5);
 
 
 
@@ -118,7 +131,7 @@ public class MainWindow extends Application implements UserInterface {
             }
         });
 
-        modelParameters = new HBox();
+        modelParameters = new HBox(5);
         models = new ChoiceBox<Class>();
         models.setConverter(converter);
         models.getItems().setAll(chooser.getModels());
@@ -164,6 +177,9 @@ public class MainWindow extends Application implements UserInterface {
             public void handle(ActionEvent actionEvent) {
                 grid.reset();
                 counters.reset();
+                if (clearOnStart.isSelected()){
+                    console.clear();
+                }
                 if (parser != null) {
                     VariableHeuristic varHeur = getChosenVariableHeuristic();
                     ValueHeuristic valueHeur = getChosenValueHeurisitic();
@@ -181,7 +197,9 @@ public class MainWindow extends Application implements UserInterface {
             }
         });
 
-        controlButtons.getChildren().addAll(btn, start, stop);
+        clearOnStart = new CheckBox("Clear text on start");
+
+        controlButtons.getChildren().addAll(btn, start, stop, clearOnStart);
         buttons.getChildren().addAll(new Label("Controls:"), controlButtons, new Label("Parameters:"), modelParameters);
         root.addRow(0,buttons);
 

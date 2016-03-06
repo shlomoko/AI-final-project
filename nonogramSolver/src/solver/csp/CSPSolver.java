@@ -30,8 +30,9 @@ public class CSPSolver {
 
     public boolean solve(){
         manager.report("Starting solving using " + manager.getClass().getSimpleName() +
-                        ", " + variableHeuristic.getClass().getSimpleName() + ", and " +
-                        valueHeuristic.getClass().getSimpleName());
+                        ", " + variableHeuristic.getClass().getSimpleName() + ", " +
+                        valueHeuristic.getClass().getSimpleName() + ", and " +
+                        handler.getClass().getSimpleName());
         unassigned = new ArrayList<Variable>(variableList);
         if (handler.initialize(variableList)) {
             manager.report("Starting backtracking");
