@@ -1,6 +1,7 @@
 package solver.gui;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -49,8 +50,13 @@ public class MainWindow extends Application implements UserInterface {
     }
 
     @Override
-    public void report(String message) {
-        console.appendText(message + "\n");
+    public void report(final String message) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                console.appendText(message + "\n");
+            }
+        });
     }
 
     @Override
