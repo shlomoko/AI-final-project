@@ -11,6 +11,8 @@ import solver.csp.models.block.BlockManager;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -19,6 +21,7 @@ import java.util.concurrent.TimeUnit;
  * Created by tmrlvi on 04/03/2016.
  */
 public class Console implements UserInterface {
+    private int iterations;
     Counters counters = Counters.getInstance(); //Holding the item so it will always be referenced
     File file;
     Chooser chooser;
@@ -31,6 +34,7 @@ public class Console implements UserInterface {
         chooser = new Chooser();
         String fname = null, modelName = null, varHeurName = null, valHeurName = null,
                 handlerName = null;
+        iterations = 1;
         // Parsing command line
         for (int i = 0; i < args.length; i++) {
             if (args[i].equals("-m")) {
@@ -45,11 +49,13 @@ public class Console implements UserInterface {
             } else if (args[i].equals("-c")) {
                 i++;
                 handlerName = args[i];
-            } else if (args[i].equals("-h")){
+            } else if (args[i].equals("-h")) {
                 printHelp();
                 return;
-            }
-            else if (fname == null) {
+            } else if (args[i].equals("-i")) {
+                i++;
+                iterations = Integer.parseInt(args[i]);
+            } else if (fname == null) {
                 fname = args[i];
             } else {
                 printUsage("Invalid command arguments");
@@ -58,12 +64,12 @@ public class Console implements UserInterface {
         }
 
         // Checking variables and finding relevant classes
-        if (fname == null){
+        if (fname == null) {
             printUsage("Must supply a filename");
             return;
         }
-        file =  new File(fname);
-        if (!file.isFile() || !file.exists()){
+        file = new File(fname);
+        if (!file.isFile() || !file.exists()) {
             printUsage("File not found");
             return;
         }
@@ -71,8 +77,9 @@ public class Console implements UserInterface {
 
         Class<? extends Manager> modelClass = (Class<? extends Manager>) chooser.getDefault(chooser.getModels());
         if (modelName != null) {
-            Class candidate = getClassAsSubclass(modelName, Manager.class);
+            Class candidate = chooser.getModel(modelName);
             if (candidate == null) {
+                printUsage("Invalid manager. Type -h to view the list.");
                 return;
             }
             modelClass = candidate;
@@ -80,12 +87,9 @@ public class Console implements UserInterface {
 
         Class<? extends VariableHeuristic> varHeurClass = (Class<? extends VariableHeuristic>) chooser.getDefault(chooser.getVariableHeuristics(modelClass));
         if (varHeurName != null) {
-            Class candidate = getClassAsSubclass(varHeurName, VariableHeuristic.class);
+            Class candidate = chooser.getVariableHeuristic(varHeurName, modelClass);
             if (candidate == null) {
-                return;
-            }
-            if (!chooser.getVariableHeuristics(modelClass).contains(candidate)){
-                printUsage("The heuristic " + varHeurName + " cannot be used with model " + modelClass.getSimpleName());
+                printUsage("Invalid variable heuristic. Type -h to view the list.");
                 return;
             }
             varHeurClass = candidate;
@@ -93,21 +97,19 @@ public class Console implements UserInterface {
 
         Class<? extends ValueHeuristic> valHeurClass = (Class<? extends ValueHeuristic>) chooser.getDefault(chooser.getValueHeuristics(modelClass));
         if (valHeurName != null) {
-            Class candidate = getClassAsSubclass(valHeurName, ValueHeuristic.class);
+            Class candidate = chooser.getValueHeuristic(valHeurName, modelClass);
             if (candidate == null) {
-                return;
-            }
-            if (!chooser.getValueHeuristics(modelClass).contains(candidate)){
-                printUsage("The heuristic " + valHeurName + " cannot be used with model " + modelClass.getSimpleName());
+                printUsage("Invalid value heuristic. Type -h to view the list.");
                 return;
             }
             valHeurClass = candidate;
         }
 
         Class<? extends ConstraintHandler> handlerClass = (Class<? extends ConstraintHandler>) chooser.getDefault(chooser.getHandlers());
-        if (modelName != null) {
-            Class candidate = getClassAsSubclass(modelName, ConstraintHandler.class);
+        if (handlerName != null) {
+            Class candidate = chooser.getHandler(handlerName);
             if (candidate == null) {
+                printUsage("Invalid handler. Type -h to view the list.");
                 return;
             }
             handlerClass = candidate;
@@ -115,16 +117,28 @@ public class Console implements UserInterface {
 
         // Creating the running environment
         try {
-            valHeur = valHeurClass.newInstance();
-            varHeur = varHeurClass.newInstance();
-            handler = handlerClass.newInstance();
             Class[] modelArgs = new Class[5];
             modelArgs[0] = NonogramParser.class;
             modelArgs[1] = UserInterface.class;
             modelArgs[2] = VariableHeuristic.class;
             modelArgs[3] = ValueHeuristic.class;
             modelArgs[4] = ConstraintHandler.class;
-            model = modelClass.getConstructor(modelArgs).newInstance(new NonogramParser(file), this, varHeur, valHeur, handler);
+
+            for (int i = 0; i < iterations; i++) {
+                valHeur = valHeurClass.newInstance();
+                varHeur = varHeurClass.newInstance();
+                handler = handlerClass.newInstance();
+                model = modelClass.getConstructor(modelArgs).newInstance(new NonogramParser(file), this, varHeur, valHeur, handler);
+                model.run();
+            }
+            report("===============================");
+            report("==Total Counters==");
+            for (String key : counters.keySetCount()) {
+                report(key + ": " + ((double) counters.getCount(key)) / iterations + " times.");
+            }
+            for (String key : counters.keySetTick()) {
+                report(key + ": " + counters.getAverageTicks(key) + " miliseconds on average,");
+            }
         } catch (NoSuchMethodException e) {
             printUsage("Sorry. Had runtime error. Please try again.");
         } catch (InstantiationException e) {
@@ -136,26 +150,26 @@ public class Console implements UserInterface {
         } catch (IOException e) {
             printUsage("Failed parsing file. Check filename and rerun.");
         }
-        model.run();
-    }
-
-
-    private Class getClassAsSubclass(String name, Class cls){
-        Class candidate;
-        try {
-            candidate = Class.forName(name);
-        } catch (ClassNotFoundException e) {
-            printUsage("Invalid " + cls.getSimpleName() + ". Type -h to view the list.");
-            return null;
-        }
-        if (!(cls.isAssignableFrom(candidate))){
-            printUsage("Invalid "  + cls.getSimpleName() + ". Type -h to view the list.");
-            return null;
-        }
-        return candidate;
     }
 
     private void printHelp(){
+        report("Models:");
+        Set<Class<?>> var = new HashSet<>();
+        Set<Class<?>> val = new HashSet<>();
+        for (Class<? extends Manager> model : chooser.getModels()){
+            report("    " + model.getSimpleName());
+            var.addAll(chooser.getVariableHeuristics(model));
+            val.addAll(chooser.getValueHeuristics(model));
+        }
+        report("VarHeur:");
+        for (Class<?> v : var){
+            report("    " + v.getSimpleName());
+        }
+        report("ValueHeur:");
+        for (Class<?> v : val){
+            report("    " + v.getSimpleName());
+        }
+        
         printUsage("");
     }
 

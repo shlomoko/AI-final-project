@@ -19,6 +19,7 @@ public class Counters {
         ticks = new HashMap<String, Long>();
         totalTicks = new HashMap<String, Long>();
         ticksAmount = new HashMap<String, Long>();
+        System.currentTimeMillis();
     }
 
     public synchronized void addCount(String name, Long amount){
@@ -31,9 +32,12 @@ public class Counters {
     }
 
     public synchronized void tick(String name){
-        ticks.put(name, System.currentTimeMillis());
         totalTicks.put(name, 0L);
         ticksAmount.put(name, 0L);
+        if (!ticks.containsKey(name)){
+            ticks.put(name, 0L);
+        }
+        ticks.put(name, System.currentTimeMillis());
     }
 
     public synchronized Long tock(String name){
@@ -49,10 +53,10 @@ public class Counters {
         return counters.get(name);
     }
 
-    public synchronized Long getAverageTicks(String name){
+    public synchronized Double getAverageTicks(String name){
         if (!totalTicks.containsKey(name))
-            return 0L;
-        return totalTicks.get(name) / ticksAmount.get(name);
+            return 0.0;
+        return ((1.0) * totalTicks.get(name)) / ticksAmount.get(name);
     }
 
     public synchronized Set<String> keySetCount(){

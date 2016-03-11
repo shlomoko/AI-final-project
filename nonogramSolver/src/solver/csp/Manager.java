@@ -62,6 +62,8 @@ public abstract class Manager implements Runnable {
     public void run()  {
         try {
             isRunning = true;
+            Counters counters = Counters.getInstance();
+
             if (getSolver().solve()) {
                 report("Success!");
             } else {
@@ -69,7 +71,7 @@ public abstract class Manager implements Runnable {
             }
             display(true);
 
-            Counters counters = Counters.getInstance();
+
             for (String key : counters.keySetCount()){
                 report(key + ": " + counters.getCount(key) + " times.");
             }

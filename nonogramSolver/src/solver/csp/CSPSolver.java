@@ -34,10 +34,15 @@ public class CSPSolver {
                         valueHeuristic.getClass().getSimpleName() + ", and " +
                         handler.getClass().getSimpleName());
         unassigned = new ArrayList<Variable>(variableList);
+        Counters counters = Counters.getInstance();
+        counters.tick("total run");
         if (handler.initialize(variableList)) {
             manager.report("Starting backtracking");
-            return backtracking();
+            boolean result = backtracking();
+            counters.tock("total run");
+            return result;
         }
+        counters.tock("total run");
         return false;
     }
 

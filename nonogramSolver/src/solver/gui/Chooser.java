@@ -39,8 +39,16 @@ public class Chooser {
         return models;
     }
 
+    public Class<? extends Manager> getModel(String name){
+        return (Class<? extends Manager>) byName(getModels(), name);
+    }
+
     public Set<Class<? extends ConstraintHandler>> getHandlers(){
         return handler;
+    }
+
+    public Class<? extends ConstraintHandler> getHandler(String name){
+        return (Class<? extends ConstraintHandler>) byName(getHandlers(), name);
     }
 
     public Set<Class<? extends VariableHeuristic>> getVariableHeuristics(final Class<? extends Manager> manager){
@@ -53,6 +61,10 @@ public class Chooser {
         }));
     }
 
+    public Class<? extends VariableHeuristic> getVariableHeuristic(String name, final Class<? extends Manager> manager){
+        return (Class<? extends VariableHeuristic>) byName(getVariableHeuristics(manager), name);
+    }
+
     public Set<Class<? extends ValueHeuristic>> getValueHeuristics(final Class<? extends Manager> manager) {
         return new HashSet<Class<? extends ValueHeuristic>>(Collections2.filter(valHeur, new Predicate<Class>() {
             @Override
@@ -61,6 +73,10 @@ public class Chooser {
                 return annotation == null || annotation.value().equals(manager.getSimpleName());
             }
         }));
+    }
+
+    public Class<? extends ValueHeuristic> getValueHeuristic(String name, final Class<? extends Manager> manager){
+        return (Class<? extends ValueHeuristic>) byName(getValueHeuristics(manager), name);
     }
 
     public Class<?> getDefault(Set<? extends Class<?>> items){
@@ -77,5 +93,14 @@ public class Chooser {
                 return aAnnotation.value() - bAnnotation.value();
             }
         });
+    }
+
+    public Class<?> byName(Set<? extends Class<?>> items, String name){
+        for (Class<?> item : items){
+            if (item.getSimpleName().equals(name)){
+                return item;
+            }
+        }
+        return null;
     }
 }

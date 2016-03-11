@@ -1,11 +1,13 @@
 package solver.csp.models.cell.constraints;
 
+import javafx.scene.layout.Pane;
 import solver.csp.Constraint;
 import solver.csp.Variable;
 import solver.csp.models.cell.CellVariable;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -17,28 +19,37 @@ public class AxisConstraint extends Constraint {
 
 
     public AxisConstraint(List<CellVariable> vars, List<Integer> blocks){
-        this.vars = vars;
+        this.vars = new ArrayList<>(vars);
         this.blocks = blocks;
     }
 
     @Override
     public boolean checkConstraintFails() {
         Iterator<Integer> blocksIter = blocks.iterator();
+        // Skip the zero
+        if (blocks.size() > 0 && blocks.get(0) == 0){
+            blocksIter.next();
+        }
         Integer currentBlock = 0;
         boolean inBlock = false;
         List<Integer> comitted = this.isCommited();
         for(int index : comitted){
-            if(vars.get(index).getValue()!= null &&(Boolean)(vars.get(index).getValue())  == false){
+            if(vars.get(index).getValue()!= null && !((Boolean) (vars.get(index).getValue()))){
                 return true;
             }
         }
         for (CellVariable cell : vars){
 
             if (cell.getValue() == null){
-                if (blocksIter.hasNext()) {
+                if (inBlock){
+                    if (currentBlock == 0) {
+                        inBlock = false;
+                    } else {
+                        currentBlock--;
+                    }
+                } else if (blocksIter.hasNext()) {
                     return false;
                 }
-                inBlock = false;
             }
             //Finished a block
             else if (inBlock) {
@@ -81,6 +92,54 @@ public class AxisConstraint extends Constraint {
         }
         return commited;
     }
+
+    /*private List<List<Integer>> getPossibleBlocks(){
+        LinkedList<List<Integer>> lastLayer = new LinkedList<>(); // Blocks that are closed (need
+        LinkedList<List<Integer>> currentLayer = new LinkedList<>(); // Blocks that are openned
+        int currentStart=-1;
+        boolean inBlock = false;
+        boolean inNull = false;
+        for (int i=0; i < vars.size(); i++){
+            if (vars.get(i).getValue() == null){
+                if (inBlock){
+                    if (!inNull){
+                        lastLayer = currentLayer;
+                        currentLayer = new LinkedList<>();
+                    }
+                    for (List<Integer> possibility : lastLayer){
+                        List<Integer> newPossibility = new LinkedList<>(possibility);
+                        newPossibility.add(i - currentStart);
+                        currentLayer.add(newPossibility);
+                    }
+                }
+                inNull = true;
+            }
+            else if ((Boolean) vars.get(i).getValue()){
+                if (inNull && currentLayer.size() == 0){
+                    currentLayer = lastLayer; //NULL that didn't affect
+                }
+                if (!inBlock){
+                    currentStart = i;
+                    inBlock = true;
+                } else {
+                    for (List<Integer> possibility : currentLayer){
+                        currentLayer.set(currentLayer.get(currentLayer.size()-1)
+                    }
+                }
+                inNull = false;
+            } else {
+                if (inNull && currentLayer.size() == 0){
+                    currentLayer = lastLayer; //NULL that didn't affect
+                }
+                if (inBlock){
+                    inBlock = false;
+
+                }
+                inNull = false;
+            }
+        }
+        return possiblilities;
+    }*/
     @Override
     public List<Variable> getAffectedVariables() {
         return new ArrayList<Variable>(vars);

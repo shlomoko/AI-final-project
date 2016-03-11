@@ -45,8 +45,13 @@ public class MainWindow extends Application implements UserInterface {
     private ChoiceBox<Class> handlers;
 
     @Override
-    public void display(Color[][] colors) {
-        grid.setColor(colors);
+    public void display(final Color[][] colors) {
+        Platform.runLater(new Runnable() {
+              @Override
+              public void run() {
+                  grid.setColor(colors);
+              }
+          });
     }
 
     @Override
