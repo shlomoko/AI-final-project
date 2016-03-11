@@ -15,6 +15,10 @@ public class Counters {
     private Map<String, Long> totalTicks;
 
     private Counters(){
+        reset();
+    }
+
+    public void reset(){
         counters = new HashMap<String, Long>();
         ticks = new HashMap<String, Long>();
         totalTicks = new HashMap<String, Long>();
@@ -65,10 +69,6 @@ public class Counters {
 
     public synchronized Set<String> keySetTick(){
         return ticksAmount.keySet();
-    }
-
-    public synchronized void reset(){
-        _instance = new Counters();
     }
 
     public static Counters getInstance(){

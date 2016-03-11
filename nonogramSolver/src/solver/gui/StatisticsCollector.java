@@ -123,6 +123,12 @@ public class StatisticsCollector implements UserInterface {
                 break;
             }
         }
+        if (!wroteHeaders){
+            writeHeader();
+            for (String counter : measureTitles) {
+                row.add("");
+            }
+        }
 
         if (interrupted){
             row.set(5, "TOOK TOO LONG! (" + timeout + " minutes)");
@@ -147,12 +153,6 @@ public class StatisticsCollector implements UserInterface {
     }
 
     private void writeRow(List<String> row){
-        if (!wroteHeaders){
-            writeHeader();
-            for (String counter : measureTitles) {
-                row.add("");
-            }
-        }
         output.writeNext(row.toArray(new String[row.size()]));
         try {
             output.flush();
