@@ -93,8 +93,8 @@ public class StatisticsCollector implements UserInterface {
             runAndRecord(new NonogramParser(game), row, valHeurClass, varHeurClass, handlerClass, managerClass);
         } catch (IllegalAccessException | NoSuchMethodException | InstantiationException | InvocationTargetException | IOException e) {
             e.printStackTrace();
-            row.set(5, e.toString());
-            for (int i = 6; i < row.size(); i++){
+            row.set(6, e.toString());
+            for (int i = 7; i < row.size(); i++){
                 row.set(i, "");
             }
             writeRow(row);
@@ -106,7 +106,7 @@ public class StatisticsCollector implements UserInterface {
                               Class<? extends ConstraintHandler> handlerClass, Class<? extends Manager> managerClass) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException, InterruptedException {
 
         boolean interrupted = false;
-        for (int i = 5; i < iterations; i++) {
+        for (int i = 0; i < iterations; i++) {
             ValueHeuristic valHeur = valHeurClass.newInstance();
             VariableHeuristic varHeur = varHeurClass.newInstance();
             ConstraintHandler handler = handlerClass.newInstance();
@@ -131,13 +131,13 @@ public class StatisticsCollector implements UserInterface {
         }
 
         if (interrupted){
-            row.set(5, "TOOK TOO LONG! (" + timeout + " minutes)");
-            for (int i = 6; i < row.size(); i++){
+            row.set(6, "TOOK TOO LONG! (" + timeout + " minutes)");
+            for (int i = 7; i < row.size(); i++){
                 row.set(i, "");
             }
         }
         else {
-            int i = 5;
+            int i = 6;
             for (String counter : measureTitles) {
                 if (counters.keySetCount().contains(counter)) {
                     row.set(i, "" + counters.getCount(counter) / (double) iterations);
