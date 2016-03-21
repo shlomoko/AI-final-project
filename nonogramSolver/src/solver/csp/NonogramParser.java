@@ -100,5 +100,8 @@ public class NonogramParser {
 
         }
         file.close();
+        if (rowVariables == null || colVariables == null){
+            throw new IOException("Invalid File");
+        }
     }
 }
