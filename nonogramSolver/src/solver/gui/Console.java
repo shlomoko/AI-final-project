@@ -161,11 +161,11 @@ public class Console implements UserInterface {
             var.addAll(chooser.getVariableHeuristics(model));
             val.addAll(chooser.getValueHeuristics(model));
         }
-        report("VarHeur:");
+        report("Variable Heuristics:");
         for (Class<?> v : var){
             report("    " + v.getSimpleName());
         }
-        report("ValueHeur:");
+        report("Value Heuristics::");
         for (Class<?> v : val){
             report("    " + v.getSimpleName());
         }
